@@ -63,7 +63,7 @@ section{display:flex;flex-direction:column;gap:16px}
 .legend span{display:inline-flex;align-items:center;gap:6px}
 
 .p{stroke:var(--ink);stroke-width:1.5;stroke-opacity:.55}
-.p.sud{fill:var(--sud-soft)} .p.sus{fill:var(--sus-soft)} .p.out{fill:url(#hatch)} .p.lin-out{fill:url(#hatch)} .p.lin-in{fill:var(--lin-soft)} .p.unk{fill:url(#dots)}
+.p.sud{fill:var(--sud-soft)} .p.sus{fill:var(--sus-soft)} .p.out{fill:url(#hatch)} .p.lin-out{fill:url(#hatch)} .p.lin-in{fill:var(--lin-soft)}
 .zone{fill:none;stroke-width:3;stroke-dasharray:10 6}
 .lbl{font-family:var(--font-b);font-size:17px;font-weight:600;fill:var(--ink);text-anchor:middle}
 .lbl.o{fill:var(--out-ink);font-weight:500}
@@ -126,7 +126,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
 <header>
   <span class="eyebrow">Master plan · revisi pembagian lahan · 27 Sep 2026</span>
   <h1>Rencana Hotel Keluarga Made Sudharta &amp; Made Susila</h1>
-  <p class="lede">Skenario kalau keluarga Ramayana keluar dari proyek, dan kemungkinan Lindawati juga. Yang tersisa 7 bidang SHM: 4 milik Made Sudharta dan 3 milik Made Susila. Menurut gambar, ketujuhnya masih menyambung jadi satu tapak, jadi hotel tetap bisa dibangun sebagai satu kesatuan.</p>
+  <p class="lede">Skenario kalau keluarga Ramayana keluar dari proyek, dan kemungkinan Lindawati juga. Yang tersisa 7 bidang SHM: 4 milik Made Sudharta dan 3 milik Made Susila. Menurut gambar, ketujuhnya masih menyambung jadi satu tapak, jadi hotel tetap bisa dibangun sebagai satu kesatuan seluas 12.000 m² (60% dari tapak lama 2 ha).</p>
 </header>
 
 <section>
@@ -186,10 +186,9 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
         <polygon class="p out" points="180,698 528,705 528,820 180,820"></polygon>
         <polygon class="p out" points="968,750 1105,750 1105,1020 968,1020"></polygon>
         <!-- belum jelas pemiliknya di gambar -->
-        <polygon class="p unk" points="948,580 1105,580 1105,750 968,750 968,720 948,720"></polygon>
         <!-- Lindawati -->
         <polygon class="p lin-out" data-lin points="695,580 948,580 948,720 695,720"></polygon>
-        <polygon class="p lin-out" data-lin points="780,720 968,720 968,1000 780,1000"></polygon>
+        <polygon class="p lin-out" data-lin points="780,720 948,720 948,580 1105,580 1105,750 968,750 968,1000 780,1000"></polygon>
         <!-- Made Susila -->
         <polygon class="p sus" points="195,185 632,112 632,375 190,375"></polygon>
         <polygon class="p sus" points="893,80 1105,62 1105,375 893,375"></polygon>
@@ -221,7 +220,6 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
         <text class="lbl o" x="1036" y="880">Made</text><text class="lbl o" x="1036" y="900">Setiawan</text><text class="shm" x="1036" y="922">1870</text>
         <text class="lbl o" id="l1872" x="822" y="648">Lindawati</text><text class="shm" id="s1872" x="822" y="670">1872 · keluar</text>
         <text class="lbl o" id="l1871" x="874" y="860">Lindawati</text><text class="shm" id="s1871" x="874" y="882">1871 · keluar</text>
-        <text class="shm" x="1030" y="665">cek batas</text>
 
         <!-- nomor zona -->
         <circle cx="300" cy="330" r="20" fill="#3F8C5A"></circle><text class="zl" x="300" y="338" fill="#fff">1</text>
@@ -262,20 +260,20 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
 
 <section>
   <h2>Porsi lahan menurut gambar</h2>
-  <p>Ini perkiraan kasar dari luas kotak di gambar, bukan luas di sertifikat. Tujuannya hanya untuk melihat skala perubahan.</p>
+  <p>Dihitung dari luas yang dikonfirmasi keluarga: Made Susila 2.000 m² per bidang, Made Sudharta 1.500 m², Lindawati 1.500 m², Ramayana 1.000 m². Total tapak lama 20.000 m² (2 ha).</p>
   <div class="tbl">
     <table>
-      <thead><tr><th>Keluarga</th><th>Bidang</th><th class="num">Porsi tapak lama</th><th class="num">Porsi tapak baru (A)</th><th class="num">Porsi tapak baru (B)</th></tr></thead>
+      <thead><tr><th>Keluarga</th><th>Bidang</th><th class="num">Luas</th><th class="num">Porsi tapak lama</th><th class="num">Porsi tapak baru (A)</th><th class="num">Porsi tapak baru (B)</th></tr></thead>
       <tbody>
-        <tr><td><span class="pill sus">Made Susila</span></td><td>3</td><td class="num">±35%</td><td class="num">±58%</td><td class="num">±48%</td></tr>
-        <tr><td><span class="pill sud">Made Sudharta</span></td><td>4</td><td class="num">±26%</td><td class="num">±42%</td><td class="num">±35%</td></tr>
-        <tr><td><span class="pill lin">Lindawati</span></td><td>2</td><td class="num">±12%</td><td class="num">—</td><td class="num">±17%</td></tr>
-        <tr><td>Ramayana</td><td>5</td><td class="num">±27%</td><td class="num">—</td><td class="num">—</td></tr>
-        <tr><td><b>Total dipakai hotel</b></td><td></td><td class="num">100%</td><td class="num"><b>±61%</b></td><td class="num"><b>±73%</b></td></tr>
+        <tr><td><span class="pill sus">Made Susila</span></td><td>3 × 2.000 m²</td><td class="num">6.000 m²</td><td class="num">30%</td><td class="num">50%</td><td class="num">40%</td></tr>
+        <tr><td><span class="pill sud">Made Sudharta</span></td><td>4 × 1.500 m²</td><td class="num">6.000 m²</td><td class="num">30%</td><td class="num">50%</td><td class="num">40%</td></tr>
+        <tr><td><span class="pill lin">Lindawati</span></td><td>2 × 1.500 m²</td><td class="num">3.000 m²</td><td class="num">15%</td><td class="num">—</td><td class="num">20%</td></tr>
+        <tr><td>Ramayana</td><td>5 × 1.000 m²</td><td class="num">5.000 m²</td><td class="num">25%</td><td class="num">—</td><td class="num">—</td></tr>
+        <tr><td><b>Total lahan hotel</b></td><td></td><td class="num">20.000 m²</td><td class="num">100%</td><td class="num"><b>12.000 m² (60%)</b></td><td class="num"><b>15.000 m² (75%)</b></td></tr>
       </tbody>
     </table>
   </div>
-  <p class="note">Walaupun jumlah bidang Sudharta lebih banyak (4 lawan 3), bidang Susila terlihat lebih luas. Karena itu pembagian hasil sebaiknya pakai luas m² di SHM, bukan jumlah sertifikat.</p>
+  <p class="note">Made Sudharta dan Made Susila masing-masing menyumbang 6.000 m², jadi di skenario A porsinya pas 50 : 50. Pembagian hasil tetap sebaiknya pakai luas m², bukan jumlah sertifikat, supaya adil kalau nanti ada keluarga yang masuk atau keluar.</p>
 </section>
 
 <section>
@@ -284,7 +282,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
     <div class="issue"><span class="sev">Kritis</span><h3>Bangunan eksisting kena garis batas</h3><p>Gedung restoran/dapur memanjang di tengah melintasi batas Nyoman Satiawan (Ramayana). Beberapa villa di selatan Luh Laksmini dan Ernawati masuk ke bidang Gede Sastrawan. Gedung utama di atas (dengan GWT) seluruhnya di bidang Gede Mulyawan. Semua ini harus didesain ulang atau dibongkar sebagian.</p></div>
     <div class="issue"><span class="sev">Kritis</span><h3>Akses jalan hanya lewat Susila selatan</h3><p>Pastikan bidang Susila selatan benar-benar menempel ke jalan umum, dan lebar leher ke area lobby cukup (idealnya minimal 8–10 m untuk jalan mobil + trotoar + saluran). Cek juga apakah bidang utara (Susila barat laut) punya akses jalan cadangan untuk servis.</p></div>
     <div class="issue"><span class="sev">Kritis</span><h3>No. SHM Made Susila kosong</h3><p>Ketiga bidang Susila belum ada nomor SHM di gambar. Perlu dicek status, atas nama siapa, dan luasnya sebelum perjanjian dibuat.</p></div>
-    <div class="issue mid"><span class="sev">Penting</span><h3>Kavling sisi timur belum jelas</h3><p>Area antara Nyoman Wdiasa dan Made Setiawan (bertanda "cek batas") tidak punya label pemilik di gambar. Perlu dipastikan milik siapa.</p></div>
+    <div class="issue mid"><span class="sev">Penting</span><h3>Lindawati 1871 menempel di sisi timur</h3><p>Bidang 1871 berbentuk zig-zag dan naik ke atas Made Setiawan sampai menempel ke Nyoman Wdiasa. Kalau Lindawati keluar, gedung kamar di zona 3 punya tetangga langsung di selatan, jadi perlu jarak bebas dan tembok batas.</p></div>
     <div class="issue mid"><span class="sev">Penting</span><h3>Tetangga baru di tengah tapak</h3><p>Lahan Ramayana di utara-tengah dan barat daya menjepit tapak. Kalau nanti dibangun 3 lantai, villa bisa terlihat dari luar. Butuh tembok batas, sabuk tanaman, dan idealnya perjanjian garis sempadan/tinggi bangunan dengan tetangga.</p></div>
     <div class="issue mid"><span class="sev">Penting</span><h3>Utilitas dan saluran bersama</h3><p>Pipa air, listrik, dan saluran pembuangan di gambar lama melewati lahan yang sekarang keluar. Perlu dipetakan ulang, atau dibuat perjanjian hak lintas (easement) tertulis dengan Ramayana/Lindawati.</p></div>
   </div>
@@ -292,19 +290,19 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
 
 <section>
   <h2>Hitung kasar jumlah kamar</h2>
-  <p>Masukkan luas dari sertifikat. Angka awal di bawah hanya contoh (proporsi gambar dengan asumsi seluruh tapak lama 2 ha). Ganti dengan angka asli.</p>
+  <p>Luas sudah diisi sesuai data keluarga. Asumsi di bawah bisa diubah untuk melihat pengaruhnya ke jumlah kamar.</p>
   <div class="calc">
     <div class="card">
       <h3>Luas bidang (m²)</h3>
-      <div class="row"><label for="a_nw"><i class="sw" style="background:var(--sus)"></i>Susila barat laut · zona 1</label><input id="a_nw" type="number" min="0" step="10" value="2740"></div>
-      <div class="row"><label for="a_luh"><i class="sw" style="background:var(--sud)"></i>Luh Laksmini 1877 · zona 1</label><input id="a_luh" type="number" min="0" step="10" value="1400"></div>
-      <div class="row"><label for="a_er"><i class="sw" style="background:var(--sud)"></i>Ernawati 1873 · zona 2</label><input id="a_er" type="number" min="0" step="10" value="1360"></div>
-      <div class="row"><label for="a_no"><i class="sw" style="background:var(--sud)"></i>Norita Alex 1878 · zona 2</label><input id="a_no" type="number" min="0" step="10" value="1300"></div>
-      <div class="row"><label for="a_ne"><i class="sw" style="background:var(--sus)"></i>Susila timur laut · zona 3</label><input id="a_ne" type="number" min="0" step="10" value="1780"></div>
-      <div class="row"><label for="a_wd"><i class="sw" style="background:var(--sud)"></i>Nyoman Wdiasa 1867 · zona 3</label><input id="a_wd" type="number" min="0" step="10" value="1120"></div>
-      <div class="row"><label for="a_s"><i class="sw" style="background:var(--sus)"></i>Susila selatan · zona 4</label><input id="a_s" type="number" min="0" step="10" value="2580"></div>
-      <div class="row lin"><label for="a_l2"><i class="sw" style="background:var(--lin)"></i>Lindawati 1872 (B)</label><input id="a_l2" type="number" min="0" step="10" value="980"></div>
-      <div class="row lin"><label for="a_l1"><i class="sw" style="background:var(--lin)"></i>Lindawati 1871 (B)</label><input id="a_l1" type="number" min="0" step="10" value="1440"></div>
+      <div class="row"><label for="a_nw"><i class="sw" style="background:var(--sus)"></i>Susila barat laut · zona 1</label><input id="a_nw" type="number" min="0" step="10" value="2000"></div>
+      <div class="row"><label for="a_luh"><i class="sw" style="background:var(--sud)"></i>Luh Laksmini 1877 · zona 1</label><input id="a_luh" type="number" min="0" step="10" value="1500"></div>
+      <div class="row"><label for="a_er"><i class="sw" style="background:var(--sud)"></i>Ernawati 1873 · zona 2</label><input id="a_er" type="number" min="0" step="10" value="1500"></div>
+      <div class="row"><label for="a_no"><i class="sw" style="background:var(--sud)"></i>Norita Alex 1878 · zona 2</label><input id="a_no" type="number" min="0" step="10" value="1500"></div>
+      <div class="row"><label for="a_ne"><i class="sw" style="background:var(--sus)"></i>Susila timur laut · zona 3</label><input id="a_ne" type="number" min="0" step="10" value="2000"></div>
+      <div class="row"><label for="a_wd"><i class="sw" style="background:var(--sud)"></i>Nyoman Wdiasa 1867 · zona 3</label><input id="a_wd" type="number" min="0" step="10" value="1500"></div>
+      <div class="row"><label for="a_s"><i class="sw" style="background:var(--sus)"></i>Susila selatan · zona 4</label><input id="a_s" type="number" min="0" step="10" value="2000"></div>
+      <div class="row lin"><label for="a_l2"><i class="sw" style="background:var(--lin)"></i>Lindawati 1872 (B)</label><input id="a_l2" type="number" min="0" step="10" value="1500"></div>
+      <div class="row lin"><label for="a_l1"><i class="sw" style="background:var(--lin)"></i>Lindawati 1871 (B)</label><input id="a_l1" type="number" min="0" step="10" value="1500"></div>
       <h3>Asumsi</h3>
       <div class="row"><label for="v_per">Lahan per villa (m²)</label><input id="v_per" type="number" min="100" step="10" value="400"></div>
       <div class="row"><label for="kdb">KDB gedung kamar (%)</label><input id="kdb" type="number" min="10" max="80" step="5" value="40"></div>
@@ -330,7 +328,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
           </tbody>
         </table>
       </div>
-      <p class="note">Zona 2 dan 4 tidak dihitung untuk kamar karena dipakai lobby, kolam, restoran, parkir. Di skenario B, Lindawati 1872 jadi perluasan restoran/meeting dan 1871 jadi gedung kamar kedua. KDB dan tinggi bangunan final mengikuti RDTR/KKPR kabupaten, jadi angka ini hanya untuk diskusi keluarga.</p>
+      <p class="note">Zona 2 dan 4 tidak dihitung untuk kamar karena dipakai lobby, kolam, restoran, parkir. Di skenario B, Lindawati 1872 jadi perluasan restoran/meeting dan 1871 jadi gedung kamar kedua yang menyambung ke zona 3. KDB dan tinggi bangunan final mengikuti RDTR/KKPR kabupaten, jadi angka ini hanya untuk diskusi keluarga.</p>
     </div>
   </div>
 </section>
@@ -347,7 +345,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
   </ol>
 </section>
 
-<footer>Dibuat dari gambar master plan (18 Mei 2016, gambar oleh Putu Putrawan) yang sudah diberi batas dan nama pemilik. Semua ukuran dan persentase adalah perkiraan visual dan harus dicek ulang dengan data sertifikat dan pengukuran di lapangan.</footer>
+<footer>Dibuat dari gambar master plan (18 Mei 2016, gambar oleh Putu Putrawan) yang sudah diberi batas dan nama pemilik. Luas per bidang sesuai data keluarga. Garis batas di denah digambar ulang dari gambar, jadi posisi pastinya tetap perlu dicek dengan sertifikat dan pengukuran di lapangan.</footer>
 </div>
 
 <script>
@@ -397,7 +395,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
     set('s1871', B ? '1871 · gedung kamar 2' : '1871 · keluar');
     document.querySelectorAll('.row.lin').forEach(function(r){ r.classList.toggle('dim', !B); });
     set('scNote', B
-      ? 'Skenario B: Lindawati 1872 menyambung jantung hotel ke timur dan memakai gedung restoran yang sudah ada di sana. 1871 jadi gedung kamar kedua di samping jalur masuk. Leher jalan masuk jadi lebih lebar dan tapak lebih utuh.'
+      ? 'Skenario B: Lindawati 1872 menyambung jantung hotel ke timur dan memakai gedung restoran yang sudah ada di sana. 1871, yang zig-zag naik sampai menempel Nyoman Wdiasa, jadi gedung kamar kedua dan menyambung langsung ke zona 3. Leher jalan masuk jadi lebih lebar dan tapak lebih utuh.'
       : 'Skenario A: Lindawati 1872 dan 1871 jadi tetangga. Jalur masuk menyempit di "leher" antara Susila selatan dan Ernawati/Norita, jadi pastikan lebarnya cukup untuk jalan mobil dua arah dan trotoar.');
     try { localStorage.setItem('rbc-scenario', s); } catch(e) {}
     calc();
