@@ -72,6 +72,7 @@ section{display:flex;flex-direction:column;gap:16px}
 .zl{font-family:var(--font-d);font-size:22px;font-weight:800;text-anchor:middle}
 .hatchline{stroke:var(--out-ink);stroke-width:1.4}
 .hatchbg{fill:var(--out)}
+.road{fill:var(--line)} .roadl{font-family:var(--font-m);font-size:14px;fill:var(--muted);letter-spacing:.08em}
 .arrow{stroke:var(--warn);stroke-width:4;fill:none}
 .arrowhead{fill:var(--warn)}
 .x{fill:var(--warn)}
@@ -165,7 +166,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
   </div>
   <div class="mapbox">
     <div class="map">
-      <svg viewBox="160 40 980 1000" role="img" aria-labelledby="mapTitle">
+      <svg viewBox="112 40 1028 1030" role="img" aria-labelledby="mapTitle">
         <title id="mapTitle">Denah bidang tanah dan zona hotel yang diusulkan</title>
         <defs>
           <pattern id="hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
@@ -181,6 +182,11 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
           </marker>
         </defs>
 
+        <!-- jalan -->
+        <rect class="road" x="128" y="150" width="46" height="690" rx="3"></rect>
+        <text class="roadl" transform="translate(157 700) rotate(-90)">JALAN BARAT</text>
+        <rect class="road" x="470" y="1030" width="670" height="34" rx="3"></rect>
+        <text class="roadl" x="1120" y="1053" style="text-anchor:end;fill:var(--ink)">JALAN UTAMA</text>
         <!-- Ramayana (keluar) -->
         <polygon class="p out" id="pMul" points="632,112 893,80 893,235 632,242"></polygon>
         <polygon class="p out" id="pSat" points="632,242 893,235 893,375 632,375"></polygon>
@@ -193,7 +199,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
         <polygon class="p lin-out" data-lin points="780,720 948,720 948,580 1105,580 1105,750 968,750 968,1000 780,1000"></polygon>
         <!-- Made Susila -->
         <polygon class="p sus" id="pNWs" points="195,185 315,165 315,375 190,375"></polygon>
-        <polygon class="p sus" points="315,165 632,112 632,375 315,375"></polygon>
+        <polygon class="p sus" id="pNWr" points="315,165 632,112 632,375 315,375"></polygon>
         <polygon class="p sus" points="893,80 1105,62 1105,375 893,375"></polygon>
         <polygon class="p sus" points="528,580 695,580 695,720 780,720 780,1000 528,1000"></polygon>
         <!-- Made Sudharta -->
@@ -210,7 +216,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
         <polygon class="zone" points="538,590 685,590 685,730 770,730 770,990 538,990" style="stroke:#8A5A9E"></polygon>
 
         <!-- label bidang -->
-        <text class="lbl" x="410" y="250">Made Susila</text><text class="shm" x="410" y="272">SHM —</text>
+        <text class="lbl" id="lNW" x="410" y="250">Made Susila</text><text class="shm" id="sNW" x="410" y="272">SHM —</text>
         <text class="lbl" x="1000" y="190">Made Susila</text><text class="shm" x="1000" y="212">SHM —</text>
         <text class="lbl" x="610" y="870">Made Susila</text><text class="shm" x="610" y="892">SHM —</text>
         <text class="lbl" id="lLuh" x="310" y="455">Luh Laksmini</text><text class="shm" id="sLuh" x="310" y="477">1877</text>
@@ -219,7 +225,6 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
         <text class="lbl" x="1005" y="455">Nyoman Wdiasa</text><text class="shm" x="1005" y="477">1867</text>
         <text class="lbl o" id="lMul" x="762" y="170">Gede Mulyawan</text><text class="shm" id="sMul" x="762" y="192">1865 · keluar</text>
         <text class="lbl o" id="lSat" x="762" y="305">Nyoman Satiawan</text><text class="shm" id="sSat" x="762" y="327">1869 · keluar</text>
-        <g id="nwNote" hidden><text class="shm" x="252" y="290" style="fill:var(--ink)">±500 m²</text><text class="shm" x="252" y="310">ke Ramayana</text></g>
         <text class="lbl o" x="354" y="648">Gede Sastrawan</text><text class="shm" x="354" y="670">1876 · keluar</text>
         <text class="lbl o" x="354" y="765">Nyoman Setiawati</text><text class="shm" x="354" y="787">1875 · keluar</text>
         <text class="lbl o" x="1036" y="880">Made</text><text class="lbl o" x="1036" y="900">Setiawan</text><text class="shm" x="1036" y="922">1870</text>
@@ -237,13 +242,15 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
         <circle cx="610" cy="770" r="20" fill="#8A5A9E"></circle><text class="zl" x="610" y="778" fill="#fff">4</text>
 
         <!-- akses masuk -->
-        <path class="arrow" d="M 700 1030 L 700 740 L 620 700 L 620 600" marker-end="url(#ah)"></path>
-        <text class="shm" x="700" y="1030" style="fill:var(--warn);text-anchor:start" dx="8">Masuk</text>
+        <path class="arrow" d="M 700 1047 L 700 740 L 620 700 L 620 600" marker-end="url(#ah)"></path>
+        <text class="shm" x="700" y="1020" style="fill:var(--warn);text-anchor:start" dx="8">Masuk utama</text>
+        <path class="arrow" d="M 150 520 L 222 520" marker-end="url(#ah)" style="stroke-width:3"></path>
+        <text class="shm" x="200" y="545" style="fill:var(--warn);font-size:12px">gerbang 2</text>
 
         <!-- titik konflik bangunan eksisting -->
         <g>
           <circle class="x" data-nc cx="893" cy="330" r="9"></circle>
-          <circle class="x" data-nc cx="320" cy="580" r="9"></circle>
+          <circle class="x" cx="320" cy="580" r="9"></circle>
           <circle class="x" cx="470" cy="580" r="9"></circle>
           <circle class="x" data-nc cx="632" cy="190" r="9"></circle>
         </g>
@@ -258,11 +265,11 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
         <span><i class="sw" style="background:var(--out);border:1px solid var(--out-ink)"></i>Keluar</span>
         <span><i class="sw" style="background:var(--warn);border-radius:50%"></i>Bangunan kena batas</span>
       </div>
-      <div class="z"><span class="n" style="background:#3F8C5A">1</span><div><h3>Villa</h3><p><span id="z1who">Susila barat laut + Luh Laksmini.</span> Zona paling tenang dan paling jauh dari jalan. Pakai tata letak villa yang sudah ada (villa 133–136, 249–253), villa yang terpotong batas selatan digeser ke utara. Tidak perlu kolam pribadi karena tamu villa memakai kolam utama yang sudah ada di Norita Alex, cukup jalan kaki lewat Ernawati.</p></div></div>
-      <div class="z" id="z5d" hidden><span class="n" style="background:#1B5E86">5</span><div><h3>Gedung utama eksisting</h3><p>Hasil barter: Gede Mulyawan + Nyoman Satiawan (2.000 m²). Gedung utama dengan GWT tetap dipakai sebagai gedung kamar, dan gedung restoran yang tadinya kena batas tidak perlu dipotong.</p></div></div>
+      <div class="z"><span class="n" style="background:#3F8C5A">1</span><div><h3>Villa</h3><p><span id="z1who">Susila barat laut + Luh Laksmini.</span> Zona paling tenang, jauh dari jalan utama. Pakai tata letak villa yang sudah ada (villa 133–136, 249–253), villa yang terpotong batas selatan digeser ke utara. Tidak perlu kolam pribadi karena tamu villa memakai kolam utama yang sudah ada di Norita Alex, cukup jalan kaki lewat Ernawati.</p></div></div>
+      <div class="z" id="z5d" hidden><span class="n" style="background:#1B5E86">5</span><div><h3>Gedung utama eksisting</h3><p>Hasil barter: Gede Mulyawan + Nyoman Satiawan (2.000 m²), ditukar dengan Susila barat laut. Gedung utama dengan GWT tetap dipakai sebagai gedung kamar, dan gedung restoran yang tadinya kena batas tidak perlu dipotong.</p></div></div>
       <div class="z"><span class="n" style="background:#C0602E">2</span><div><h3>Jantung hotel</h3><p>Norita Alex: kolam utama yang sudah ada (eksisting) tetap dipakai sebagai pusat hotel, dengan dek, pool bar, dan taman di sekelilingnya. Ernawati: lobby, drop-off, dan restoran all-day dining yang menghadap kolam. Semua tamu lewat sini.</p></div></div>
       <div class="z"><span class="n" style="background:#2F6FA8">3</span><div><h3>Gedung kamar + area servis</h3><p>Susila timur laut + Nyoman Wdiasa. Gedung kamar 3 lantai (maks. 15 m sesuai aturan Bali) menghadap kolam. Dapur, laundry, gudang, mess karyawan, tandon air (GWT) dan genset di sisi paling timur.</p></div></div>
-      <div class="z"><span class="n" style="background:#8A5A9E">4</span><div><h3>Pintu masuk, parkir, spa</h3><p>Susila selatan. Gerbang dan pos satpam dari jalan selatan, jalur mobil ke drop-off, parkir, lalu spa atau ruang meeting di bagian barat. Bidang ini satu-satunya jalan masuk, jadi kuncinya ada di sini.</p></div></div>
+      <div class="z"><span class="n" style="background:#8A5A9E">4</span><div><h3>Pintu masuk, parkir, spa</h3><p>Susila selatan. Gerbang dan pos satpam dari jalan selatan, jalur mobil ke drop-off, parkir, lalu spa atau ruang meeting di bagian barat. Ini jalan masuk utama dari jalan utama, jadi bidang ini jangan sampai dilepas.</p></div></div>
       <p class="note" id="scNote">Skenario A: Lindawati 1872 dan 1871 jadi tetangga. Jalur masuk menyempit di "leher" antara Susila selatan dan Ernawati/Norita, jadi pastikan lebarnya cukup untuk jalan mobil dua arah dan trotoar.</p>
     </div>
   </div>
@@ -290,7 +297,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
   <h2>Masalah yang harus diselesaikan dulu</h2>
   <div class="issues">
     <div class="issue"><span class="sev">Kritis</span><h3>Bangunan eksisting kena garis batas</h3><p>Gedung restoran/dapur memanjang di tengah melintasi batas Nyoman Satiawan (Ramayana). Beberapa villa di selatan Luh Laksmini dan Ernawati masuk ke bidang Gede Sastrawan. Gedung utama di atas (dengan GWT) seluruhnya di bidang Gede Mulyawan. Semua ini harus didesain ulang atau dibongkar sebagian.</p></div>
-    <div class="issue"><span class="sev">Kritis</span><h3>Akses jalan hanya lewat Susila selatan</h3><p>Pastikan bidang Susila selatan benar-benar menempel ke jalan umum, dan lebar leher ke area lobby cukup (idealnya minimal 8–10 m untuk jalan mobil + trotoar + saluran). Cek juga apakah bidang utara (Susila barat laut) punya akses jalan cadangan untuk servis.</p></div>
+    <div class="issue"><span class="sev">Kritis</span><h3>Jalan masuk utama lewat Susila selatan</h3><p>Pastikan lebar leher dari Susila selatan ke area lobby cukup (idealnya minimal 8–10 m untuk jalan mobil + trotoar + saluran). Jalan barat di samping Luh Laksmini bisa jadi gerbang kedua untuk servis, karyawan, dan tamu villa, jadi truk tidak lewat lobby. Karena itu Luh Laksmini sebaiknya tidak dilepas.</p></div>
     <div class="issue"><span class="sev">Kritis</span><h3>No. SHM Made Susila kosong</h3><p>Ketiga bidang Susila belum ada nomor SHM di gambar. Perlu dicek status, atas nama siapa, dan luasnya sebelum perjanjian dibuat.</p></div>
     <div class="issue mid"><span class="sev">Penting</span><h3>Lindawati 1871 menempel di sisi timur</h3><p>Bidang 1871 berbentuk zig-zag dan naik ke atas Made Setiawan sampai menempel ke Nyoman Wdiasa. Kalau Lindawati keluar, gedung kamar di zona 3 punya tetangga langsung di selatan, jadi perlu jarak bebas dan tembok batas.</p></div>
     <div class="issue mid"><span class="sev">Penting</span><h3>Tetangga baru di tengah tapak</h3><p>Lahan Ramayana di utara-tengah dan barat daya menjepit tapak. Kalau nanti dibangun 3 lantai, villa bisa terlihat dari luar. Butuh tembok batas, sabuk tanaman, dan idealnya perjanjian garis sempadan/tinggi bangunan dengan tetangga.</p></div>
@@ -375,8 +382,8 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
     var vPer = v('v_per') || 400;
     var gpk = v('gpk') || 60;
     var factor = (v('kdb') / 100) * v('fl') / gpk;
-    // C: Luh Laksmini + 500 m2 Susila barat laut ditukar dengan Mulyawan + Satiawan (2.000 m2)
-    var villaLand = C ? Math.max(0, v('a_nw') - 500) : v('a_nw') + v('a_luh');
+    // C: Susila barat laut (2.000 m2) ditukar utuh dengan Mulyawan + Satiawan (2.000 m2)
+    var villaLand = C ? v('a_luh') : v('a_nw') + v('a_luh');
     var villas = Math.floor(villaLand / vPer);
     var roomLand = v('a_ne') + v('a_wd') + (B ? v('a_l1') : 0) + (C ? 2000 : 0);
     var rooms = Math.floor(roomLand * factor);
@@ -401,7 +408,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
   var notes = {
     A: 'Skenario A: Lindawati 1872 dan 1871 jadi tetangga. Jalur masuk menyempit di "leher" antara Susila selatan dan Ernawati/Norita, jadi pastikan lebarnya cukup untuk jalan mobil dua arah dan trotoar.',
     B: 'Skenario B: Lindawati 1872 menyambung jantung hotel ke timur dan memakai gedung restoran yang sudah ada di sana. 1871, yang zig-zag naik sampai menempel Nyoman Wdiasa, jadi gedung kamar kedua dan menyambung langsung ke zona 3. Leher jalan masuk jadi lebih lebar dan tapak lebih utuh.',
-    C: 'Skenario C: Luh Laksmini (1.500 m²) dan ±500 m² ujung barat Susila barat laut ditukar dengan Gede Mulyawan + Nyoman Satiawan (2.000 m²). Sisi utara hotel jadi satu blok utuh dari barat ke timur, gedung utama eksisting tetap dipakai (zona 5), dan Ramayana dapat satu blok utuh ±4.000 m² di barat. Luas hotel tetap 12.000 m², porsi Sudharta : Susila tetap 50 : 50 kalau bidang hasil barter dibagi 1.500 : 500. Nilai tanah dan bangunan kedua sisi perlu dinilai KJPP dulu.'
+    C: 'Skenario C: Susila barat laut (2.000 m²) ditukar utuh dengan Gede Mulyawan + Nyoman Satiawan (2.000 m²). Hanya Made Susila yang terlibat, luasnya sama persis, jadi Susila tetap 6.000 m² dan Sudharta tidak berubah (50 : 50). Hotel tetap memegang Luh Laksmini dengan akses jalan barat untuk gerbang kedua, sisi utara hotel jadi utuh, dan gedung utama eksisting tetap dipakai (zona 5). Ramayana dapat bidang 2.000 m² yang juga menghadap jalan barat. Pastikan jalan barat memang menerus sampai sisi Susila barat laut, dan nilai kedua sisi dinilai KJPP.'
   };
 
   function setScenario(s){
@@ -416,19 +423,19 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
     set('s1871', B ? '1871 · gedung kamar 2' : '1871 · keluar');
     // barter
     cls('pMul', C ? 'p swap' : 'p out'); cls('pSat', C ? 'p swap' : 'p out');
-    cls('pLuh', C ? 'p out' : 'p sud'); cls('pNWs', C ? 'p out' : 'p sus');
-    cls('lMul', C ? 'lbl' : 'lbl o'); cls('lSat', C ? 'lbl' : 'lbl o'); cls('lLuh', C ? 'lbl o' : 'lbl');
-    set('sMul', C ? '1865 · hasil barter' : '1865 · keluar');
-    set('sSat', C ? '1869 · hasil barter' : '1869 · keluar');
-    set('sLuh', C ? '1877 · ke Ramayana' : '1877');
+    cls('pNWs', C ? 'p out' : 'p sus'); cls('pNWr', C ? 'p out' : 'p sus');
+    cls('lMul', C ? 'lbl' : 'lbl o'); cls('lSat', C ? 'lbl' : 'lbl o'); cls('lNW', C ? 'lbl o' : 'lbl');
+    set('sMul', C ? '1865 · ke Made Susila' : '1865 · keluar');
+    set('sSat', C ? '1869 · ke Made Susila' : '1869 · keluar');
+    set('sNW', C ? 'ke Ramayana · 2.000 m²' : 'SHM —');
     document.querySelectorAll('[data-nc]').forEach(function(d){ if (C) d.setAttribute('hidden',''); else d.removeAttribute('hidden'); });
-    show('nwNote', C); show('z5', C); show('z5n', C); show('z5d', C);
-    document.getElementById('z1').setAttribute('points', C ? '325,172 622,126 622,365 325,365' : '202,196 622,126 622,570 202,570');
-    document.querySelector('#z1n circle').setAttribute('cx', C ? 470 : 300);
-    document.querySelector('#z1n circle').setAttribute('cy', C ? 320 : 330);
-    document.querySelector('#z1n text').setAttribute('x', C ? 470 : 300);
-    document.querySelector('#z1n text').setAttribute('y', C ? 328 : 338);
-    set('z1who', C ? 'Sisa Susila barat laut (±1.500 m²).' : 'Susila barat laut + Luh Laksmini.');
+    show('z5', C); show('z5n', C); show('z5d', C);
+    document.getElementById('z1').setAttribute('points', C ? '200,385 425,385 425,570 190,570' : '202,196 622,126 622,570 202,570');
+    document.querySelector('#z1n circle').setAttribute('cx', C ? 380 : 300);
+    document.querySelector('#z1n circle').setAttribute('cy', C ? 530 : 330);
+    document.querySelector('#z1n text').setAttribute('x', C ? 380 : 300);
+    document.querySelector('#z1n text').setAttribute('y', C ? 538 : 338);
+    set('z1who', C ? 'Luh Laksmini (1.500 m²), dengan gerbang sendiri dari jalan barat.' : 'Susila barat laut + Luh Laksmini.');
     document.querySelectorAll('.row.lin').forEach(function(r){ r.classList.toggle('dim', !B); });
     set('scNote', notes[s]);
     try { localStorage.setItem('rbc-scenario', s); } catch(e) {}
