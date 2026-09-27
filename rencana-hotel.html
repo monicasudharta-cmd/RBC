@@ -1,0 +1,413 @@
+<title>Rencana Hotel Sudharta–Susila</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#F3F5F1; --surface:#FFFFFF; --ink:#18221F; --muted:#5B6B65; --line:#D5DDD8;
+  --sud:#1F6F66; --sud-soft:#CFE5E0; --sus:#B7801A; --sus-soft:#F2E3C3;
+  --lin:#7A5AA6; --lin-soft:#E4DBF0; --out:#C9CFCB; --out-ink:#8A948F;
+  --warn:#B4442C; --warn-soft:#F6DED7; --ok:#2F7D4A;
+  --font-d:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --font-b:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-m:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#121816; --surface:#1A2320; --ink:#E6ECE9; --muted:#9AABA4; --line:#2E3A36;
+    --sud:#5BBFB1; --sud-soft:#1D3B37; --sus:#E0AE4C; --sus-soft:#3D3120;
+    --lin:#B39AD8; --lin-soft:#342B45; --out:#2C3431; --out-ink:#6F7B76;
+    --warn:#EE8A72; --warn-soft:#3E2520; --ok:#6CC58A;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#121816; --surface:#1A2320; --ink:#E6ECE9; --muted:#9AABA4; --line:#2E3A36;
+  --sud:#5BBFB1; --sud-soft:#1D3B37; --sus:#E0AE4C; --sus-soft:#3D3120;
+  --lin:#B39AD8; --lin-soft:#342B45; --out:#2C3431; --out-ink:#6F7B76;
+  --warn:#EE8A72; --warn-soft:#3E2520; --ok:#6CC58A;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-b);font-size:15px;line-height:1.6;margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:20px;padding-block:32px 64px;display:flex;flex-direction:column;gap:44px}
+h1,h2,h3{font-family:var(--font-d);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(28px,4.4vw,42px);font-weight:800;letter-spacing:-.01em}
+h2{font-size:22px;font-weight:700}
+h3{font-size:16px;font-weight:700}
+p{margin:0;max-width:68ch}
+.eyebrow{font-family:var(--font-m);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.mono{font-family:var(--font-m);font-variant-numeric:tabular-nums}
+header{display:flex;flex-direction:column;gap:12px}
+header .lede{font-size:17px;color:var(--muted)}
+section{display:flex;flex-direction:column;gap:16px}
+
+/* families */
+.fam{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.fam div{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;display:flex;flex-direction:column;gap:4px}
+.fam .tag{display:inline-flex;align-items:center;gap:8px;font-weight:600}
+.sw{width:12px;height:12px;border-radius:2px;display:inline-block;flex:none}
+.fam small{color:var(--muted);font-size:13px}
+.fam .st{font-family:var(--font-m);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+.st.in{color:var(--ok)} .st.out{color:var(--warn)} .st.maybe{color:var(--lin)}
+
+/* map */
+.mapbox{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:820px){.mapbox{grid-template-columns:1fr}}
+.map{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px;overflow-x:auto}
+.map svg{display:block;width:100%;min-width:320px;height:auto}
+.toggle{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden;align-self:flex-start;background:var(--surface)}
+.toggle button{font:inherit;font-size:14px;border:0;background:transparent;color:var(--ink);padding:8px 14px;cursor:pointer}
+.toggle button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.toggle button:focus-visible,input:focus-visible{outline:2px solid var(--sud);outline-offset:2px}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+
+.p{stroke:var(--ink);stroke-width:1.5;stroke-opacity:.55}
+.p.sud{fill:var(--sud-soft)} .p.sus{fill:var(--sus-soft)} .p.out{fill:url(#hatch)} .p.lin-out{fill:url(#hatch)} .p.lin-in{fill:var(--lin-soft)} .p.unk{fill:url(#dots)}
+.zone{fill:none;stroke-width:3;stroke-dasharray:10 6}
+.lbl{font-family:var(--font-b);font-size:17px;font-weight:600;fill:var(--ink);text-anchor:middle}
+.lbl.o{fill:var(--out-ink);font-weight:500}
+.shm{font-family:var(--font-m);font-size:14px;fill:var(--muted);text-anchor:middle}
+.zl{font-family:var(--font-d);font-size:22px;font-weight:800;text-anchor:middle}
+.hatchline{stroke:var(--out-ink);stroke-width:1.4}
+.hatchbg{fill:var(--out)}
+.arrow{stroke:var(--warn);stroke-width:4;fill:none}
+.arrowhead{fill:var(--warn)}
+.x{fill:var(--warn)}
+
+.zones{display:flex;flex-direction:column;gap:12px}
+.z{display:grid;grid-template-columns:36px 1fr;gap:10px;align-items:start}
+.z .n{font-family:var(--font-d);font-weight:800;font-size:15px;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;color:#fff}
+.z p{font-size:14px;color:var(--muted)}
+.z h3{margin-bottom:2px}
+
+/* tables */
+.tbl{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:560px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--font-m);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+tr:last-child td{border-bottom:0}
+td.num{text-align:right;font-family:var(--font-m);font-variant-numeric:tabular-nums}
+.pill{font-family:var(--font-m);font-size:11.5px;padding:2px 8px;border-radius:99px;white-space:nowrap}
+.pill.sud{background:var(--sud-soft);color:var(--sud)} .pill.sus{background:var(--sus-soft);color:var(--sus)} .pill.lin{background:var(--lin-soft);color:var(--lin)}
+
+/* issues */
+.issues{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.issue{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--warn);border-radius:4px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.issue.mid{border-left-color:var(--sus)}
+.issue p{font-size:14px;color:var(--muted)}
+.sev{font-family:var(--font-m);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--warn)}
+.issue.mid .sev{color:var(--sus)}
+
+/* calculator */
+.calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}
+@media (max-width:820px){.calc{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.row{display:grid;grid-template-columns:1fr 120px;gap:10px;align-items:center;font-size:14px}
+.row label{display:flex;align-items:center;gap:8px}
+.row input{font:inherit;font-family:var(--font-m);font-size:14px;width:100%;padding:6px 8px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink);text-align:right}
+.row.dim{opacity:.4}
+.note{font-size:12.5px;color:var(--muted)}
+.out{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.out div{border-top:2px solid var(--line);padding-top:8px}
+.out b{display:block;font-family:var(--font-d);font-size:26px;font-variant-numeric:tabular-nums}
+.out span{font-size:13px;color:var(--muted)}
+.bar{display:flex;height:14px;border-radius:3px;overflow:hidden;background:var(--line)}
+.bar i{display:block;height:100%}
+
+ol.steps{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px;max-width:72ch}
+ol.steps li::marker{font-family:var(--font-m);color:var(--muted)}
+ol.steps b{font-weight:600}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+</style>
+
+<div class="wrap">
+
+<header>
+  <span class="eyebrow">Master plan · revisi pembagian lahan · 27 Sep 2026</span>
+  <h1>Rencana Hotel Keluarga Made Sudharta &amp; Made Susila</h1>
+  <p class="lede">Skenario kalau keluarga Ramayana keluar dari proyek, dan kemungkinan Lindawati juga. Yang tersisa 7 bidang SHM: 4 milik Made Sudharta dan 3 milik Made Susila. Menurut gambar, ketujuhnya masih menyambung jadi satu tapak, jadi hotel tetap bisa dibangun sebagai satu kesatuan.</p>
+</header>
+
+<section>
+  <h2>Siapa ikut, siapa keluar</h2>
+  <div class="fam">
+    <div>
+      <span class="tag"><i class="sw" style="background:var(--sud)"></i>Made Sudharta</span>
+      <span class="st in">Ikut · 4 bidang</span>
+      <small>Luh Laksmini 1877 · Ernawati 1873 · Norita Alex 1878 · Nyoman Wdiasa 1867</small>
+    </div>
+    <div>
+      <span class="tag"><i class="sw" style="background:var(--sus)"></i>Made Susila</span>
+      <span class="st in">Ikut · 3 bidang</span>
+      <small>Barat laut · Timur laut · Selatan (pintu masuk). No. SHM belum tertulis di gambar.</small>
+    </div>
+    <div>
+      <span class="tag"><i class="sw" style="background:var(--lin)"></i>Lindawati</span>
+      <span class="st maybe">Kemungkinan keluar · 2 bidang</span>
+      <small>1872 · 1871. Rencana dibuat supaya tetap jalan tanpa bidang ini.</small>
+    </div>
+    <div>
+      <span class="tag"><i class="sw" style="background:var(--out-ink)"></i>Ramayana</span>
+      <span class="st out">Keluar · 5 bidang</span>
+      <small>Gede Mulyawan 1865 · Nyoman Satiawan 1869 · Gede Sastrawan 1876 · Nyoman Setiawati 1875 · Made Setiawan 1870</small>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Tapak baru dan pembagian zona</h2>
+  <div class="toggle" role="group" aria-label="Pilih skenario">
+    <button type="button" id="btnA" aria-pressed="true">Skenario A: tanpa Lindawati</button>
+    <button type="button" id="btnB" aria-pressed="false">Skenario B: Lindawati ikut</button>
+  </div>
+  <div class="mapbox">
+    <div class="map">
+      <svg viewBox="160 40 980 1000" role="img" aria-labelledby="mapTitle">
+        <title id="mapTitle">Denah bidang tanah dan zona hotel yang diusulkan</title>
+        <defs>
+          <pattern id="hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <rect class="hatchbg" width="12" height="12"></rect>
+            <line class="hatchline" x1="0" y1="0" x2="0" y2="12"></line>
+          </pattern>
+          <pattern id="dots" width="14" height="14" patternUnits="userSpaceOnUse">
+            <rect fill="var(--bg)" width="14" height="14"></rect>
+            <circle cx="7" cy="7" r="1.6" fill="var(--out-ink)"></circle>
+          </pattern>
+          <marker id="ah" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+            <path class="arrowhead" d="M0,0 L10,5 L0,10 z"></path>
+          </marker>
+        </defs>
+
+        <!-- Ramayana (keluar) -->
+        <polygon class="p out" points="632,112 893,80 893,235 632,242"></polygon>
+        <polygon class="p out" points="632,242 893,235 893,375 632,375"></polygon>
+        <polygon class="p out" points="180,580 528,580 528,705 180,698"></polygon>
+        <polygon class="p out" points="180,698 528,705 528,820 180,820"></polygon>
+        <polygon class="p out" points="968,750 1105,750 1105,1020 968,1020"></polygon>
+        <!-- belum jelas pemiliknya di gambar -->
+        <polygon class="p unk" points="948,580 1105,580 1105,750 968,750 968,720 948,720"></polygon>
+        <!-- Lindawati -->
+        <polygon class="p lin-out" data-lin points="695,580 948,580 948,720 695,720"></polygon>
+        <polygon class="p lin-out" data-lin points="780,720 968,720 968,1000 780,1000"></polygon>
+        <!-- Made Susila -->
+        <polygon class="p sus" points="195,185 632,112 632,375 190,375"></polygon>
+        <polygon class="p sus" points="893,80 1105,62 1105,375 893,375"></polygon>
+        <polygon class="p sus" points="528,580 695,580 695,720 780,720 780,1000 528,1000"></polygon>
+        <!-- Made Sudharta -->
+        <polygon class="p sud" points="190,375 435,375 435,580 180,580"></polygon>
+        <polygon class="p sud" points="435,375 675,375 675,580 435,580"></polygon>
+        <polygon class="p sud" points="675,375 905,375 905,580 675,580"></polygon>
+        <polygon class="p sud" points="905,375 1105,375 1105,580 905,580"></polygon>
+
+        <!-- zona (garis putus) -->
+        <polygon class="zone" stroke="var(--sud)" points="202,196 622,126 622,570 202,570" style="stroke:#3F8C5A"></polygon>
+        <polygon class="zone" stroke="var(--sus)" points="445,385 895,385 895,570 445,570" style="stroke:#C0602E"></polygon>
+        <polygon class="zone" stroke="var(--lin)" points="903,90 1095,74 1095,570 915,570 915,385 903,385" style="stroke:#2F6FA8"></polygon>
+        <polygon class="zone" points="538,590 685,590 685,730 770,730 770,990 538,990" style="stroke:#8A5A9E"></polygon>
+
+        <!-- label bidang -->
+        <text class="lbl" x="410" y="250">Made Susila</text><text class="shm" x="410" y="272">SHM —</text>
+        <text class="lbl" x="1000" y="190">Made Susila</text><text class="shm" x="1000" y="212">SHM —</text>
+        <text class="lbl" x="610" y="870">Made Susila</text><text class="shm" x="610" y="892">SHM —</text>
+        <text class="lbl" x="310" y="455">Luh Laksmini</text><text class="shm" x="310" y="477">1877</text>
+        <text class="lbl" x="555" y="455">Ernawati</text><text class="shm" x="555" y="477">1873</text>
+        <text class="lbl" x="790" y="455">Norita Alex</text><text class="shm" x="790" y="477">1878</text>
+        <text class="lbl" x="1005" y="455">Nyoman Wdiasa</text><text class="shm" x="1005" y="477">1867</text>
+        <text class="lbl o" x="762" y="170">Gede Mulyawan</text><text class="shm" x="762" y="192">1865 · keluar</text>
+        <text class="lbl o" x="762" y="305">Nyoman Satiawan</text><text class="shm" x="762" y="327">1869 · keluar</text>
+        <text class="lbl o" x="354" y="648">Gede Sastrawan</text><text class="shm" x="354" y="670">1876 · keluar</text>
+        <text class="lbl o" x="354" y="765">Nyoman Setiawati</text><text class="shm" x="354" y="787">1875 · keluar</text>
+        <text class="lbl o" x="1036" y="880">Made</text><text class="lbl o" x="1036" y="900">Setiawan</text><text class="shm" x="1036" y="922">1870</text>
+        <text class="lbl o" id="l1872" x="822" y="648">Lindawati</text><text class="shm" id="s1872" x="822" y="670">1872 · keluar</text>
+        <text class="lbl o" id="l1871" x="874" y="860">Lindawati</text><text class="shm" id="s1871" x="874" y="882">1871 · keluar</text>
+        <text class="shm" x="1030" y="665">cek batas</text>
+
+        <!-- nomor zona -->
+        <circle cx="300" cy="330" r="20" fill="#3F8C5A"></circle><text class="zl" x="300" y="338" fill="#fff">1</text>
+        <circle cx="555" cy="530" r="20" fill="#C0602E"></circle><text class="zl" x="555" y="538" fill="#fff">2</text>
+        <circle cx="1000" cy="300" r="20" fill="#2F6FA8"></circle><text class="zl" x="1000" y="308" fill="#fff">3</text>
+        <circle cx="610" cy="770" r="20" fill="#8A5A9E"></circle><text class="zl" x="610" y="778" fill="#fff">4</text>
+
+        <!-- akses masuk -->
+        <path class="arrow" d="M 700 1030 L 700 740 L 620 700 L 620 600" marker-end="url(#ah)"></path>
+        <text class="shm" x="700" y="1030" style="fill:var(--warn);text-anchor:start" dx="8">Masuk</text>
+
+        <!-- titik konflik bangunan eksisting -->
+        <g>
+          <circle class="x" cx="893" cy="330" r="9"></circle>
+          <circle class="x" cx="893" cy="480" r="9"></circle>
+          <circle class="x" cx="320" cy="580" r="9"></circle>
+          <circle class="x" cx="470" cy="580" r="9"></circle>
+          <circle class="x" cx="632" cy="190" r="9"></circle>
+        </g>
+      </svg>
+    </div>
+    <div class="zones">
+      <div class="legend">
+        <span><i class="sw" style="background:var(--sud-soft);border:1px solid var(--sud)"></i>Made Sudharta</span>
+        <span><i class="sw" style="background:var(--sus-soft);border:1px solid var(--sus)"></i>Made Susila</span>
+        <span><i class="sw" style="background:var(--lin-soft);border:1px solid var(--lin)"></i>Lindawati (skenario B)</span>
+        <span><i class="sw" style="background:var(--out);border:1px solid var(--out-ink)"></i>Keluar</span>
+        <span><i class="sw" style="background:var(--warn);border-radius:50%"></i>Bangunan kena batas</span>
+      </div>
+      <div class="z"><span class="n" style="background:#3F8C5A">1</span><div><h3>Villa kolam pribadi</h3><p>Susila barat laut + Luh Laksmini. Zona paling tenang dan paling jauh dari jalan. Pakai tata letak villa yang sudah ada (villa 133–136, 249–253), villa yang terpotong batas selatan digeser ke utara.</p></div></div>
+      <div class="z"><span class="n" style="background:#C0602E">2</span><div><h3>Jantung hotel</h3><p>Ernawati + Norita Alex. Lobby, drop-off bundar yang sudah ada, kolam utama, restoran all-day dining, bar. Semua tamu lewat sini.</p></div></div>
+      <div class="z"><span class="n" style="background:#2F6FA8">3</span><div><h3>Gedung kamar + area servis</h3><p>Susila timur laut + Nyoman Wdiasa. Gedung kamar 3 lantai (maks. 15 m sesuai aturan Bali) menghadap kolam. Dapur, laundry, gudang, mess karyawan, tandon air (GWT) dan genset di sisi paling timur.</p></div></div>
+      <div class="z"><span class="n" style="background:#8A5A9E">4</span><div><h3>Pintu masuk, parkir, spa</h3><p>Susila selatan. Gerbang dan pos satpam dari jalan selatan, jalur mobil ke drop-off, parkir, lalu spa atau ruang meeting di bagian barat. Bidang ini satu-satunya jalan masuk, jadi kuncinya ada di sini.</p></div></div>
+      <p class="note" id="scNote">Skenario A: Lindawati 1872 dan 1871 jadi tetangga. Jalur masuk menyempit di "leher" antara Susila selatan dan Ernawati/Norita, jadi pastikan lebarnya cukup untuk jalan mobil dua arah dan trotoar.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Porsi lahan menurut gambar</h2>
+  <p>Ini perkiraan kasar dari luas kotak di gambar, bukan luas di sertifikat. Tujuannya hanya untuk melihat skala perubahan.</p>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Keluarga</th><th>Bidang</th><th class="num">Porsi tapak lama</th><th class="num">Porsi tapak baru (A)</th><th class="num">Porsi tapak baru (B)</th></tr></thead>
+      <tbody>
+        <tr><td><span class="pill sus">Made Susila</span></td><td>3</td><td class="num">±35%</td><td class="num">±58%</td><td class="num">±48%</td></tr>
+        <tr><td><span class="pill sud">Made Sudharta</span></td><td>4</td><td class="num">±26%</td><td class="num">±42%</td><td class="num">±35%</td></tr>
+        <tr><td><span class="pill lin">Lindawati</span></td><td>2</td><td class="num">±12%</td><td class="num">—</td><td class="num">±17%</td></tr>
+        <tr><td>Ramayana</td><td>5</td><td class="num">±27%</td><td class="num">—</td><td class="num">—</td></tr>
+        <tr><td><b>Total dipakai hotel</b></td><td></td><td class="num">100%</td><td class="num"><b>±61%</b></td><td class="num"><b>±73%</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Walaupun jumlah bidang Sudharta lebih banyak (4 lawan 3), bidang Susila terlihat lebih luas. Karena itu pembagian hasil sebaiknya pakai luas m² di SHM, bukan jumlah sertifikat.</p>
+</section>
+
+<section>
+  <h2>Masalah yang harus diselesaikan dulu</h2>
+  <div class="issues">
+    <div class="issue"><span class="sev">Kritis</span><h3>Bangunan eksisting kena garis batas</h3><p>Gedung restoran/dapur memanjang di tengah melintasi batas Nyoman Satiawan (Ramayana). Beberapa villa di selatan Luh Laksmini dan Ernawati masuk ke bidang Gede Sastrawan. Gedung utama di atas (dengan GWT) seluruhnya di bidang Gede Mulyawan. Semua ini harus didesain ulang atau dibongkar sebagian.</p></div>
+    <div class="issue"><span class="sev">Kritis</span><h3>Akses jalan hanya lewat Susila selatan</h3><p>Pastikan bidang Susila selatan benar-benar menempel ke jalan umum, dan lebar leher ke area lobby cukup (idealnya minimal 8–10 m untuk jalan mobil + trotoar + saluran). Cek juga apakah bidang utara (Susila barat laut) punya akses jalan cadangan untuk servis.</p></div>
+    <div class="issue"><span class="sev">Kritis</span><h3>No. SHM Made Susila kosong</h3><p>Ketiga bidang Susila belum ada nomor SHM di gambar. Perlu dicek status, atas nama siapa, dan luasnya sebelum perjanjian dibuat.</p></div>
+    <div class="issue mid"><span class="sev">Penting</span><h3>Kavling sisi timur belum jelas</h3><p>Area antara Nyoman Wdiasa dan Made Setiawan (bertanda "cek batas") tidak punya label pemilik di gambar. Perlu dipastikan milik siapa.</p></div>
+    <div class="issue mid"><span class="sev">Penting</span><h3>Tetangga baru di tengah tapak</h3><p>Lahan Ramayana di utara-tengah dan barat daya menjepit tapak. Kalau nanti dibangun 3 lantai, villa bisa terlihat dari luar. Butuh tembok batas, sabuk tanaman, dan idealnya perjanjian garis sempadan/tinggi bangunan dengan tetangga.</p></div>
+    <div class="issue mid"><span class="sev">Penting</span><h3>Utilitas dan saluran bersama</h3><p>Pipa air, listrik, dan saluran pembuangan di gambar lama melewati lahan yang sekarang keluar. Perlu dipetakan ulang, atau dibuat perjanjian hak lintas (easement) tertulis dengan Ramayana/Lindawati.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Hitung kasar jumlah kamar</h2>
+  <p>Masukkan luas dari sertifikat. Angka awal di bawah hanya contoh (proporsi gambar dengan asumsi seluruh tapak lama 2 ha). Ganti dengan angka asli.</p>
+  <div class="calc">
+    <div class="card">
+      <h3>Luas bidang (m²)</h3>
+      <div class="row"><label for="a_nw"><i class="sw" style="background:var(--sus)"></i>Susila barat laut · zona 1</label><input id="a_nw" type="number" min="0" step="10" value="2740"></div>
+      <div class="row"><label for="a_luh"><i class="sw" style="background:var(--sud)"></i>Luh Laksmini 1877 · zona 1</label><input id="a_luh" type="number" min="0" step="10" value="1400"></div>
+      <div class="row"><label for="a_er"><i class="sw" style="background:var(--sud)"></i>Ernawati 1873 · zona 2</label><input id="a_er" type="number" min="0" step="10" value="1360"></div>
+      <div class="row"><label for="a_no"><i class="sw" style="background:var(--sud)"></i>Norita Alex 1878 · zona 2</label><input id="a_no" type="number" min="0" step="10" value="1300"></div>
+      <div class="row"><label for="a_ne"><i class="sw" style="background:var(--sus)"></i>Susila timur laut · zona 3</label><input id="a_ne" type="number" min="0" step="10" value="1780"></div>
+      <div class="row"><label for="a_wd"><i class="sw" style="background:var(--sud)"></i>Nyoman Wdiasa 1867 · zona 3</label><input id="a_wd" type="number" min="0" step="10" value="1120"></div>
+      <div class="row"><label for="a_s"><i class="sw" style="background:var(--sus)"></i>Susila selatan · zona 4</label><input id="a_s" type="number" min="0" step="10" value="2580"></div>
+      <div class="row lin"><label for="a_l2"><i class="sw" style="background:var(--lin)"></i>Lindawati 1872 (B)</label><input id="a_l2" type="number" min="0" step="10" value="980"></div>
+      <div class="row lin"><label for="a_l1"><i class="sw" style="background:var(--lin)"></i>Lindawati 1871 (B)</label><input id="a_l1" type="number" min="0" step="10" value="1440"></div>
+      <h3>Asumsi</h3>
+      <div class="row"><label for="v_per">Lahan per villa (m²)</label><input id="v_per" type="number" min="100" step="10" value="400"></div>
+      <div class="row"><label for="kdb">KDB gedung kamar (%)</label><input id="kdb" type="number" min="10" max="80" step="5" value="40"></div>
+      <div class="row"><label for="fl">Jumlah lantai</label><input id="fl" type="number" min="1" max="4" step="1" value="3"></div>
+      <div class="row"><label for="gpk">Luas kotor per kamar (m²)</label><input id="gpk" type="number" min="30" step="5" value="60"></div>
+    </div>
+    <div class="card">
+      <h3 id="calcTitle">Hasil · Skenario A</h3>
+      <div class="out">
+        <div><b id="o_total">—</b><span>total lahan hotel (m²)</span></div>
+        <div><b id="o_keys">—</b><span>perkiraan total unit</span></div>
+        <div><b id="o_villa">—</b><span>villa kolam pribadi (zona 1)</span></div>
+        <div><b id="o_rooms">—</b><span>kamar di gedung (zona 3<span id="o_bnote"></span>)</span></div>
+      </div>
+      <h3>Porsi lahan per keluarga</h3>
+      <div class="bar" aria-hidden="true"><i id="b_sud" style="background:var(--sud)"></i><i id="b_sus" style="background:var(--sus)"></i><i id="b_lin" style="background:var(--lin)"></i></div>
+      <div class="tbl" style="border:0">
+        <table style="min-width:0">
+          <tbody>
+            <tr><td><span class="pill sud">Made Sudharta</span></td><td class="num" id="t_sud">—</td><td class="num" id="p_sud">—</td></tr>
+            <tr><td><span class="pill sus">Made Susila</span></td><td class="num" id="t_sus">—</td><td class="num" id="p_sus">—</td></tr>
+            <tr id="r_lin"><td><span class="pill lin">Lindawati</span></td><td class="num" id="t_lin">—</td><td class="num" id="p_lin">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Zona 2 dan 4 tidak dihitung untuk kamar karena dipakai lobby, kolam, restoran, parkir. Di skenario B, Lindawati 1872 jadi perluasan restoran/meeting dan 1871 jadi gedung kamar kedua. KDB dan tinggi bangunan final mengikuti RDTR/KKPR kabupaten, jadi angka ini hanya untuk diskusi keluarga.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Langkah berikutnya</h2>
+  <ol class="steps">
+    <li><b>Kumpulkan data 7 SHM.</b> Fotokopi sertifikat, luas, atas nama, dan nomor SHM ketiga bidang Susila. Minta BPN/surveyor mengukur ulang dan memasang patok batas.</li>
+    <li><b>Konfirmasi keputusan Lindawati.</b> Tanyakan secara resmi apakah ikut, menyewakan, atau keluar. Kalau keluar, tawarkan sewa jangka panjang atau hak lintas untuk utilitas.</li>
+    <li><b>Buat perjanjian dengan Ramayana sebagai tetangga.</b> Isi minimal: batas tanah, siapa bangun tembok, hak lintas utilitas yang sudah ada, dan larangan membangun menempel batas.</li>
+    <li><b>Tentukan struktur usaha.</b> Bentuk PT bersama Sudharta–Susila. Karena SHM tidak bisa dimiliki PT, pilihannya: sewa tanah jangka panjang ke PT (mis. 25–30 tahun) atau HGB di atas Hak Milik. Pembagian saham/hasil berdasarkan luas m², dengan kesepakatan tertulis kalau bidang pintu masuk (Susila selatan) mau diberi bobot lebih.</li>
+    <li><b>Minta arsitek merevisi master plan.</b> Bawa denah zona di atas sebagai brief. Fokus: gedung restoran yang kena batas, gedung kamar baru di zona 3, dan lebar jalan masuk.</li>
+    <li><b>Urus izin.</b> KKPR, PBG, dokumen lingkungan (UKL-UPL atau AMDAL sesuai skala), lalu SLF setelah bangunan selesai.</li>
+  </ol>
+</section>
+
+<footer>Dibuat dari gambar master plan (18 Mei 2016, gambar oleh Putu Putrawan) yang sudah diberi batas dan nama pemilik. Semua ukuran dan persentase adalah perkiraan visual dan harus dicek ulang dengan data sertifikat dan pengukuran di lapangan.</footer>
+</div>
+
+<script>
+(function(){
+  var scenario = 'A';
+  var ids = ['a_nw','a_luh','a_er','a_no','a_ne','a_wd','a_s','a_l2','a_l1','v_per','kdb','fl','gpk'];
+  function v(id){ var n = parseFloat(document.getElementById(id).value); return isFinite(n) && n > 0 ? n : 0; }
+  function fmt(n){ return Math.round(n).toLocaleString('id-ID'); }
+  function set(id, t){ document.getElementById(id).textContent = t; }
+
+  function calc(){
+    var B = scenario === 'B';
+    var sud = v('a_luh') + v('a_er') + v('a_no') + v('a_wd');
+    var sus = v('a_nw') + v('a_ne') + v('a_s');
+    var lin = B ? v('a_l2') + v('a_l1') : 0;
+    var total = sud + sus + lin;
+    var vPer = v('v_per') || 400;
+    var villas = Math.floor((v('a_nw') + v('a_luh')) / vPer);
+    var roomLand = v('a_ne') + v('a_wd') + (B ? v('a_l1') : 0);
+    var gpk = v('gpk') || 60;
+    var rooms = Math.floor(roomLand * (v('kdb') / 100) * v('fl') / gpk);
+    set('o_total', fmt(total));
+    set('o_villa', fmt(villas));
+    set('o_rooms', fmt(rooms));
+    set('o_keys', fmt(villas + rooms));
+    set('o_bnote', B ? ' + Lindawati 1871' : '');
+    set('calcTitle', 'Hasil · Skenario ' + scenario);
+    set('t_sud', fmt(sud) + ' m²'); set('t_sus', fmt(sus) + ' m²'); set('t_lin', fmt(lin) + ' m²');
+    function pc(x){ return total ? (100 * x / total).toFixed(1) + '%' : '—'; }
+    set('p_sud', pc(sud)); set('p_sus', pc(sus)); set('p_lin', pc(lin));
+    document.getElementById('b_sud').style.width = total ? (100 * sud / total) + '%' : '0';
+    document.getElementById('b_sus').style.width = total ? (100 * sus / total) + '%' : '0';
+    document.getElementById('b_lin').style.width = total ? (100 * lin / total) + '%' : '0';
+    document.getElementById('r_lin').hidden = !B;
+  }
+
+  function setScenario(s){
+    scenario = s;
+    var B = s === 'B';
+    document.getElementById('btnA').setAttribute('aria-pressed', String(!B));
+    document.getElementById('btnB').setAttribute('aria-pressed', String(B));
+    document.querySelectorAll('[data-lin]').forEach(function(p){
+      p.setAttribute('class', 'p ' + (B ? 'lin-in' : 'lin-out'));
+    });
+    ['l1872','l1871'].forEach(function(id){ document.getElementById(id).setAttribute('class', B ? 'lbl' : 'lbl o'); });
+    set('s1872', B ? '1872 · restoran/meeting' : '1872 · keluar');
+    set('s1871', B ? '1871 · gedung kamar 2' : '1871 · keluar');
+    document.querySelectorAll('.row.lin').forEach(function(r){ r.classList.toggle('dim', !B); });
+    set('scNote', B
+      ? 'Skenario B: Lindawati 1872 menyambung jantung hotel ke timur dan memakai gedung restoran yang sudah ada di sana. 1871 jadi gedung kamar kedua di samping jalur masuk. Leher jalan masuk jadi lebih lebar dan tapak lebih utuh.'
+      : 'Skenario A: Lindawati 1872 dan 1871 jadi tetangga. Jalur masuk menyempit di "leher" antara Susila selatan dan Ernawati/Norita, jadi pastikan lebarnya cukup untuk jalan mobil dua arah dan trotoar.');
+    try { localStorage.setItem('rbc-scenario', s); } catch(e) {}
+    calc();
+  }
+
+  document.getElementById('btnA').addEventListener('click', function(){ setScenario('A'); });
+  document.getElementById('btnB').addEventListener('click', function(){ setScenario('B'); });
+  ids.forEach(function(id){ document.getElementById(id).addEventListener('input', calc); });
+  var saved = 'A';
+  try { saved = localStorage.getItem('rbc-scenario') || 'A'; } catch(e) {}
+  setScenario(saved === 'B' ? 'B' : 'A');
+})();
+</script>
