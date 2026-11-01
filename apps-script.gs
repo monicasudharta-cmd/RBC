@@ -5,6 +5,9 @@
 const SHEET_NAME = "Registrations";
 const HEADERS = ["Timestamp", "Name", "Position", "Company Name", "Email", "WhatsApp Number"];
 
+// Optional: get an email for every new registration. Comma-separated, or leave "" to disable.
+const NOTIFY_EMAIL = "";
+
 function doPost(e) {
   const lock = LockService.getScriptLock();
   lock.waitLock(10000);
@@ -32,6 +35,22 @@ function doPost(e) {
       // leading apostrophe keeps "+44..." as text instead of a formula/number
       p.whatsapp ? "'" + String(p.whatsapp).trim().slice(0, 30) : ""
     ]);
+
+    if (NOTIFY_EMAIL) {
+      MailApp.sendEmail({
+        to: NOTIFY_EMAIL,
+        subject: "WTM London – New agent: " + clean_(p.name) + " (" + clean_(p.company) + ")",
+        body: [
+          "Name: " + clean_(p.name),
+          "Position: " + clean_(p.position),
+          "Company: " + clean_(p.company),
+          "Email: " + clean_(p.email),
+          "WhatsApp: " + (p.whatsapp || "-"),
+          "",
+          "All registrations: " + ss.getUrl()
+        ].join("\n")
+      });
+    }
     return ok_();
   } finally {
     lock.releaseLock();

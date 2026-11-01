@@ -3,109 +3,148 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WTM London 2026 – Information &amp; Agent Registration</title>
-  <meta name="description" content="View our information online and register your details with us at WTM London." />
+  <title>Rama Beach Resort and Villas – WTM London 2026</title>
+  <meta name="description" content="View Rama Beach Resort and Villas information online and register your details with us at WTM London 2026." />
+  <meta name="theme-color" content="#004d5d" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --primary: #0b3d5c;
-      --accent: #c8a45a;
-      --bg: #f5f3ef;
+      /* Rama Beach brand colours (from logo) */
+      --teal:   #004d5d;  /* wordmark */
+      --sea:    #7bbdaf;  /* wave */
+      --sun:    #ec9e4b;  /* sun */
+      --cream:  #ffedd9;  /* background */
+
+      --bg: #fdf6ee;
       --card: #ffffff;
-      --text: #1f2933;
-      --muted: #6b7280;
-      --border: #e5e2dc;
+      --text: #1d3a42;
+      --muted: #5f7a80;
+      --border: #f0dfcb;
       --error: #b42318;
-      --success: #067647;
+      --success: #00695c;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: "Jost", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.5;
     }
     header {
-      background: var(--primary);
-      color: #fff;
+      background: var(--cream);
       text-align: center;
-      padding: 48px 20px 64px;
+      padding: 28px 20px 72px;
     }
+    header img { width: 100%; max-width: 340px; height: auto; display: block; margin: 0 auto 8px; }
     header .event {
       display: inline-block;
       font-size: 12px;
-      letter-spacing: 2px;
+      font-weight: 500;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      padding: 4px 12px;
+      background: var(--teal);
+      color: var(--cream);
+      padding: 5px 14px;
       border-radius: 999px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
-    header h1 { font-size: 30px; font-weight: 700; margin-bottom: 8px; }
-    header p { opacity: .85; max-width: 520px; margin: 0 auto; }
-    main { max-width: 640px; margin: -36px auto 48px; padding: 0 16px; }
+    header p { color: var(--teal); max-width: 480px; margin: 0 auto; font-size: 15px; }
+    main { max-width: 640px; margin: -44px auto 40px; padding: 0 16px; }
     .card {
       background: var(--card);
-      border-radius: 14px;
-      box-shadow: 0 4px 20px rgba(0,0,0,.06);
-      padding: 28px 24px;
-      margin-bottom: 20px;
+      border-radius: 16px;
+      box-shadow: 0 6px 24px rgba(0, 77, 93, .08);
+      padding: 26px 22px;
+      margin-bottom: 18px;
     }
-    .card h2 { font-size: 20px; color: var(--primary); margin-bottom: 4px; }
-    .card .sub { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
-    .links { display: grid; gap: 12px; }
-    .link-btn {
+    .card h2 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--teal);
+      line-height: 1.15;
+      margin-bottom: 4px;
+    }
+    .card h2::after {
+      content: "";
+      display: block;
+      width: 36px; height: 3px;
+      background: var(--sun);
+      border-radius: 2px;
+      margin-top: 8px;
+    }
+    .card .sub { color: var(--muted); font-size: 14px; margin: 8px 0 18px; }
+    .list { display: grid; gap: 10px; }
+
+    .item {
       display: flex;
       align-items: center;
       gap: 14px;
-      padding: 16px 18px;
+      padding: 14px 16px;
       border: 1px solid var(--border);
-      border-radius: 10px;
+      border-radius: 12px;
       text-decoration: none;
       color: var(--text);
       transition: border-color .15s, background .15s;
     }
-    .link-btn:hover { border-color: var(--accent); background: #fcfaf5; }
-    .link-btn .icon {
-      flex: 0 0 44px; height: 44px;
-      border-radius: 10px;
-      background: var(--primary);
-      color: #fff;
+    a.item:hover { border-color: var(--sea); background: #f6fbfa; }
+    .item .icon {
+      flex: 0 0 42px; height: 42px;
+      border-radius: 50%;
+      background: var(--cream);
       display: flex; align-items: center; justify-content: center;
-      font-size: 20px;
+      font-size: 19px;
     }
-    .link-btn strong { display: block; font-size: 16px; }
-    .link-btn span { font-size: 13px; color: var(--muted); }
-    .link-btn .arrow { margin-left: auto; color: var(--accent); font-size: 20px; }
+    .item .body { flex: 1; min-width: 0; }
+    .item strong { display: block; font-size: 16px; font-weight: 600; color: var(--teal); }
+    .item span.desc { font-size: 13px; color: var(--muted); }
+    .item .arrow { color: var(--sun); font-size: 20px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .chip {
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--teal);
+      color: #fff;
+      text-decoration: none;
+    }
+    .chip:hover { background: #00687d; }
+
     form { display: grid; gap: 16px; }
-    label { font-size: 14px; font-weight: 600; display: block; margin-bottom: 6px; }
-    label .req { color: var(--error); }
+    label { font-size: 14px; font-weight: 600; display: block; margin-bottom: 6px; color: var(--teal); }
+    label .req { color: var(--sun); }
     label .opt { color: var(--muted); font-weight: 400; }
     input {
       width: 100%;
       padding: 12px 14px;
       font-size: 16px;
+      font-family: inherit;
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 10px;
       background: #fff;
       color: var(--text);
     }
-    input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(11,61,92,.12); }
+    input:focus { outline: none; border-color: var(--sea); box-shadow: 0 0 0 3px rgba(123, 189, 175, .3); }
     .hint { font-size: 12px; color: var(--muted); margin-top: 4px; }
     button {
       padding: 14px;
       font-size: 16px;
       font-weight: 600;
+      font-family: inherit;
+      letter-spacing: .5px;
       border: none;
-      border-radius: 8px;
-      background: var(--primary);
+      border-radius: 10px;
+      background: var(--teal);
       color: #fff;
       cursor: pointer;
     }
-    button:hover { background: #0d4a70; }
+    button:hover { background: #00687d; }
     button:disabled { opacity: .6; cursor: not-allowed; }
-    .msg { padding: 14px; border-radius: 8px; font-size: 14px; display: none; }
-    .msg.ok { display: block; background: #ecfdf3; color: var(--success); }
+    .msg { padding: 14px; border-radius: 10px; font-size: 14px; display: none; }
+    .msg.ok { display: block; background: #e8f5f1; color: var(--success); }
     .msg.err { display: block; background: #fef3f2; color: var(--error); }
     footer { text-align: center; font-size: 13px; color: var(--muted); padding-bottom: 32px; }
   </style>
@@ -113,17 +152,13 @@
 <body>
 
   <header>
+    <img src="assets/logo.jpg" alt="Rama Beach Resort and Villas" width="900" height="509" />
     <div class="event">WTM London 2026</div>
-    <h1 id="brandName">Your Company Name</h1>
-    <p>Thank you for visiting us. View our information below, and leave your details so we can stay in touch.</p>
+    <p>Thank you for visiting us. Explore our resort below and leave your details so we can stay in touch.</p>
   </header>
 
   <main>
-    <section class="card">
-      <h2>Information</h2>
-      <p class="sub">Tap to view online — no download needed.</p>
-      <div class="links" id="links"></div>
-    </section>
+    <div id="sections"></div>
 
     <section class="card">
       <h2>Agent Registration</h2>
@@ -161,41 +196,88 @@
     </section>
   </main>
 
-  <footer>&copy; <span id="year"></span> <span id="footerBrand"></span> · WTM London</footer>
+  <footer>&copy; <span id="year"></span> Rama Beach Resort and Villas · WTM London</footer>
 
   <script>
     // ================== EDIT THESE ==================
-    const CONFIG = {
-      BRAND_NAME:      "Your Company Name",
-      // Google Drive links (set sharing to "Anyone with the link – Viewer")
-      LINKS: [
-        { icon: "📄", title: "Fact Sheet",  desc: "Property overview",          url: "https://drive.google.com/your-fact-sheet-link" },
-        { icon: "🎬", title: "Video",       desc: "Watch our property video",   url: "https://drive.google.com/your-video-link" },
-        { icon: "🏨", title: "Facilities",  desc: "Rooms, dining & amenities",  url: "https://drive.google.com/your-facilities-link" },
-        { icon: "🎁", title: "Package",     desc: "Packages & offers",          url: "https://drive.google.com/your-package-link" },
-        { icon: "👤", title: "Yuni – Sales",        desc: "Business card", url: "https://drive.google.com/your-yuni-card-link" },
-        { icon: "👤", title: "Monica – Marketing",  desc: "Business card", url: "https://drive.google.com/your-monica-card-link" }
-      ],
-      // Web app URL from Google Apps Script deployment (see README.md)
-      SCRIPT_URL:      "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec"
-    };
+    // Google Drive links: set sharing to "Anyone with the link – Viewer".
+    // An item has either `url` (whole row is a link) or `links` (row with buttons).
+    const SECTIONS = [
+      {
+        title: "Fact Sheet",
+        items: [
+          { icon: "📄", title: "Fact Sheet", desc: "Resort overview", url: "https://drive.google.com/your-fact-sheet-link" }
+        ]
+      },
+      {
+        title: "Video",
+        items: [
+          { icon: "▶️", title: "30 Seconds", desc: "Short highlight", url: "https://drive.google.com/your-30s-video-link" },
+          { icon: "▶️", title: "2 Minutes",  desc: "Full resort video", url: "https://drive.google.com/your-2min-video-link" }
+        ]
+      },
+      {
+        title: "Facilities",
+        items: [
+          { icon: "🍽️", title: "Dewi Shinta Restaurant", links: [
+              { label: "Photos", url: "https://drive.google.com/your-restaurant-photos-link" },
+              { label: "Menu",   url: "https://drive.google.com/your-restaurant-menu-link" }
+          ]},
+          { icon: "🌿", title: "Spa", links: [
+              { label: "Photos",          url: "https://drive.google.com/your-spa-photos-link" },
+              { label: "Menu",            url: "https://drive.google.com/your-spa-menu-link" },
+              { label: "Promotion Flyer", url: "https://drive.google.com/your-spa-flyer-link" }
+          ]},
+          { icon: "🎾", title: "Tennis Court", desc: "Photos", url: "https://drive.google.com/your-tennis-court-link" },
+          { icon: "🏛️", title: "Meeting Room", desc: "Photos", url: "https://drive.google.com/your-meeting-room-link" }
+        ]
+      },
+      {
+        title: "Our Team",
+        items: [
+          { icon: "👤", title: "Yuni",   desc: "Sales · Business card",     url: "https://drive.google.com/your-yuni-card-link" },
+          { icon: "👤", title: "Monica", desc: "Marketing · Business card", url: "https://drive.google.com/your-monica-card-link" }
+        ]
+      }
+    ];
+
+    // Web app URL from Google Apps Script deployment (see README.md)
+    const SCRIPT_URL = "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec";
     // ================================================
 
-    document.getElementById("brandName").textContent = CONFIG.BRAND_NAME;
-    document.getElementById("footerBrand").textContent = CONFIG.BRAND_NAME;
     document.getElementById("year").textContent = new Date().getFullYear();
-    const linksEl = document.getElementById("links");
-    for (const l of CONFIG.LINKS) {
-      const a = document.createElement("a");
-      a.className = "link-btn";
-      a.href = l.url;
-      a.target = "_blank";
-      a.rel = "noopener";
-      a.innerHTML = '<div class="icon"></div><div><strong></strong><span></span></div><div class="arrow">→</div>';
-      a.querySelector(".icon").textContent = l.icon;
-      a.querySelector("strong").textContent = l.title;
-      a.querySelector("span").textContent = l.desc;
-      linksEl.appendChild(a);
+
+    function el(tag, cls, text) {
+      const e = document.createElement(tag);
+      if (cls) e.className = cls;
+      if (text) e.textContent = text;
+      return e;
+    }
+    function ext(a, url) { a.href = url; a.target = "_blank"; a.rel = "noopener"; return a; }
+
+    const root = document.getElementById("sections");
+    for (const s of SECTIONS) {
+      const card = el("section", "card");
+      card.appendChild(el("h2", null, s.title));
+      card.appendChild(el("p", "sub", "Tap to view online."));
+      const list = el("div", "list");
+      for (const it of s.items) {
+        const row = it.url ? ext(el("a", "item"), it.url) : el("div", "item");
+        row.appendChild(el("div", "icon", it.icon));
+        const body = el("div", "body");
+        body.appendChild(el("strong", null, it.title));
+        if (it.desc) body.appendChild(el("span", "desc", it.desc));
+        if (it.links) {
+          const chips = el("div", "chips");
+          for (const l of it.links) chips.appendChild(ext(el("a", "chip", l.label), l.url));
+          body.appendChild(chips);
+        }
+        row.appendChild(body);
+        if (it.url) row.appendChild(el("div", "arrow", "→"));
+        list.appendChild(row);
+      }
+      card.appendChild(list);
+      root.appendChild(card);
     }
 
     const form = document.getElementById("agentForm");
@@ -231,7 +313,7 @@
 
       try {
         // no-cors: Apps Script doesn't return CORS headers; the request still lands.
-        await fetch(CONFIG.SCRIPT_URL, {
+        await fetch(SCRIPT_URL, {
           method: "POST",
           mode: "no-cors",
           body: new URLSearchParams(data)

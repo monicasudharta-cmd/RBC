@@ -1,8 +1,12 @@
 # WTM London 2026 – Information & Agent Registration
 
 Website satu halaman:
+- Logo & warna brand Rama Beach Resort and Villas
 - Tombol link (dibuka online, tanpa download) ke Google Drive:
-  Fact Sheet, Video, Facilities, Package, Business card Yuni – Sales, Business card Monica – Marketing
+  - **Fact Sheet**
+  - **Video**: 30 Seconds, 2 Minutes
+  - **Facilities**: Dewi Shinta Restaurant (Photos, Menu), Spa (Photos, Menu, Promotion Flyer), Tennis Court, Meeting Room
+  - **Our Team**: kartu nama Yuni – Sales, Monica – Marketing
 - Form registrasi agent: Name, Position, Company Name, Email (wajib), WhatsApp Number (opsional) → otomatis masuk ke **Google Sheet**
 
 ## File
@@ -10,11 +14,12 @@ Website satu halaman:
 |---|---|
 | `index.html` | Website-nya (semua HTML/CSS/JS dalam satu file) |
 | `apps-script.gs` | Script Google untuk menyimpan data form ke Google Sheet |
+| `assets/logo.jpg` | Logo Rama Beach |
 
 ## Setup (±10 menit)
 
 ### 1. Link Google Drive
-Untuk masing-masing file (Fact Sheet, Video, Facilities, Package, kartu nama Yuni, kartu nama Monica):
+Untuk masing-masing file/folder (Fact Sheet, 2 video, foto & menu restoran, foto/menu/flyer spa, tennis court, meeting room, kartu nama Yuni & Monica):
 klik kanan file → **Share** → General access: **Anyone with the link** (Viewer) → **Copy link**.
 
 > Tips: supaya agent cuma bisa lihat (tanpa tombol download/print), buka file → Share → ikon gear → hilangkan centang **"Viewers and commenters can see the option to download, print, and copy"**.
@@ -28,19 +33,16 @@ klik kanan file → **Share** → General access: **Anyone with the link** (View
    - Who has access: **Anyone**
 5. Klik **Deploy**, izinkan akses (Authorize), lalu **copy Web app URL** (`https://script.google.com/macros/s/.../exec`).
 
+**Lihat hasil input agent:** semua data masuk ke tab **Registrations** di Google Sheet ini.
+Klik **Share** di Google Sheet untuk kasih akses ke Yuni / Monica / tim (bisa dibuka & di-export ke Excel kapan saja).
+
+**(Opsional) Notifikasi email:** isi `NOTIFY_EMAIL` di script, misalnya `"yuni@...,monica@..."`, lalu deploy ulang.
+Setiap ada agent yang submit, email otomatis terkirim.
+
 ### 3. Isi konfigurasi di `index.html`
 Cari bagian `EDIT THESE` di bagian bawah file:
-```js
-const CONFIG = {
-  BRAND_NAME:      "Your Company Name",
-  LINKS: [
-    { icon: "📄", title: "Fact Sheet", desc: "...", url: "https://drive.google.com/..." },
-    { icon: "🎬", title: "Video",      desc: "...", url: "https://drive.google.com/..." },
-    // ...Facilities, Package, Yuni – Sales, Monica – Marketing
-  ],
-  SCRIPT_URL:      "https://script.google.com/macros/s/.../exec"
-};
-```
+- Ganti semua `url: "https://drive.google.com/your-..."` dengan link Google Drive yang sesuai.
+- Ganti `SCRIPT_URL` dengan Web app URL dari langkah 2.
 
 ### 4. Online-kan dengan GitHub Pages (gratis)
 1. Repo di GitHub → **Settings → Pages**.
