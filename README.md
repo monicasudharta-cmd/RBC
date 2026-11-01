@@ -3,9 +3,9 @@
 Website satu halaman:
 - Logo & warna brand Rama Beach Resort and Villas
 - Tombol link (dibuka online, tanpa download) ke Google Drive:
-  - **About the Resort**: Resort's Website, Fact Sheet
+  - **About the Resort**: Resort's Website, Fact Sheet, Room Type
   - **Video**: 30 Seconds, 2 Minutes
-  - **Facilities**: Dewi Shinta Restaurant (Photos, Menu), Spa (Photos, Menu, Promotion Flyer), Tennis Court, Meeting Room
+  - **Facilities**: Dewi Shinta Restaurant (Photos, Menu), Spa (Photos, Menu, Promotion Flyer), Meeting Room, Gym & Tennis Court
   - **Our Team**: kartu nama Yuni – Sales, Monica – Marketing
 - Form registrasi agent: Name, Position, Company Name, Email (wajib), WhatsApp Number (opsional) → otomatis masuk ke **Google Sheet**
 
