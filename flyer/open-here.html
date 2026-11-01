@@ -23,7 +23,10 @@
   ul li { padding-left: 6mm; text-indent: -6mm; margin-bottom: 2mm; }
   ul li::before { content: "●"; color: #7bbdaf; font-size: 8pt; display: inline-block; width: 6mm; text-indent: 0; vertical-align: middle; }
   .closing { margin-top: 18mm; font-size: 12pt; line-height: 1.7; }
-  .sign { margin-top: 5mm; font-family: "Cormorant Garamond", serif; font-size: 16pt; color: #004d5d; font-weight: 600; }
+  .team { display: flex; justify-content: center; align-items: center; gap: 10mm; margin-top: 5mm; }
+  .team a { font-size: 11pt; color: #00687d; text-decoration: none; }
+  .team .sep { width: 0.4mm; height: 12mm; background: #7bbdaf; }
+  .sign { margin-top: 0; font-family: "Cormorant Garamond", serif; font-size: 16pt; color: #004d5d; font-weight: 600; }
   .foot { background: #004d5d; color: #ffedd9; padding: 6mm 16mm; display: flex; justify-content: space-between; font-size: 10pt; letter-spacing: .6px; }
   .foot a { color: #ffedd9; text-decoration: none; }
 </style></head>
@@ -53,7 +56,11 @@
     </div>
 
     <div class="closing">We look forward to working with you.<br>Regards,</div>
-    <div class="sign">Yuni – Sales &nbsp;|&nbsp; Monica – Marketing</div>
+    <div class="team">
+      <div><div class="sign">Yuni – Sales</div><a href="mailto:sm@ramabeachhotel.com">sm@ramabeachhotel.com</a></div>
+      <div class="sep"></div>
+      <div><div class="sign">Monica – Marketing</div><a href="mailto:asm@ramabeachhotel.com">asm@ramabeachhotel.com</a></div>
+    </div>
   </div>
   <div class="foot">
     <a href="https://www.ramabeachhotel.com">www.ramabeachhotel.com</a>
