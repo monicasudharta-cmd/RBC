@@ -30,7 +30,7 @@ function doPost(e) {
       clean_(p.company),
       clean_(p.email),
       // leading apostrophe keeps "+44..." as text instead of a formula/number
-      "'" + String(p.whatsapp || "").trim().slice(0, 30)
+      p.whatsapp ? "'" + String(p.whatsapp).trim().slice(0, 30) : ""
     ]);
     return ok_();
   } finally {

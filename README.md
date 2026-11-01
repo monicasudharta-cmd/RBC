@@ -1,8 +1,9 @@
-# WTM London 2026 – Media Kit & Agent Registration
+# WTM London 2026 – Information & Agent Registration
 
 Website satu halaman:
-- Tombol link ke **Fact Sheet** dan **Photos** (Google Drive)
-- Form registrasi agent: Name, Position, Company Name, Email, WhatsApp Number → otomatis masuk ke **Google Sheet**
+- Tombol link (dibuka online, tanpa download) ke Google Drive:
+  Fact Sheet, Video, Facilities, Package, Business card Yuni – Sales, Business card Monica – Marketing
+- Form registrasi agent: Name, Position, Company Name, Email (wajib), WhatsApp Number (opsional) → otomatis masuk ke **Google Sheet**
 
 ## File
 | File | Fungsi |
@@ -13,8 +14,10 @@ Website satu halaman:
 ## Setup (±10 menit)
 
 ### 1. Link Google Drive
-1. Di Google Drive, klik kanan file fact sheet → **Share** → General access: **Anyone with the link** (Viewer) → **Copy link**.
-2. Lakukan hal yang sama untuk folder foto.
+Untuk masing-masing file (Fact Sheet, Video, Facilities, Package, kartu nama Yuni, kartu nama Monica):
+klik kanan file → **Share** → General access: **Anyone with the link** (Viewer) → **Copy link**.
+
+> Tips: supaya agent cuma bisa lihat (tanpa tombol download/print), buka file → Share → ikon gear → hilangkan centang **"Viewers and commenters can see the option to download, print, and copy"**.
 
 ### 2. Google Sheet untuk menampung data agent
 1. Buat Google Sheet baru (misal: "WTM London 2026 – Agents").
@@ -30,8 +33,11 @@ Cari bagian `EDIT THESE` di bagian bawah file:
 ```js
 const CONFIG = {
   BRAND_NAME:      "Your Company Name",
-  FACT_SHEET_URL:  "https://drive.google.com/...",
-  PHOTOS_URL:      "https://drive.google.com/...",
+  LINKS: [
+    { icon: "📄", title: "Fact Sheet", desc: "...", url: "https://drive.google.com/..." },
+    { icon: "🎬", title: "Video",      desc: "...", url: "https://drive.google.com/..." },
+    // ...Facilities, Package, Yuni – Sales, Monica – Marketing
+  ],
   SCRIPT_URL:      "https://script.google.com/macros/s/.../exec"
 };
 ```

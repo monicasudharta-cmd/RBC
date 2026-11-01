@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WTM London 2026 – Media Kit &amp; Agent Registration</title>
-  <meta name="description" content="Download our fact sheet and photos, and register your details with us at WTM London." />
+  <title>WTM London 2026 – Information &amp; Agent Registration</title>
+  <meta name="description" content="View our information online and register your details with us at WTM London." />
   <style>
     :root {
       --primary: #0b3d5c;
@@ -80,6 +80,7 @@
     form { display: grid; gap: 16px; }
     label { font-size: 14px; font-weight: 600; display: block; margin-bottom: 6px; }
     label .req { color: var(--error); }
+    label .opt { color: var(--muted); font-weight: 400; }
     input {
       width: 100%;
       padding: 12px 14px;
@@ -114,25 +115,14 @@
   <header>
     <div class="event">WTM London 2026</div>
     <h1 id="brandName">Your Company Name</h1>
-    <p>Thank you for visiting us. Download our fact sheet and photos below, and leave your details so we can stay in touch.</p>
+    <p>Thank you for visiting us. View our information below, and leave your details so we can stay in touch.</p>
   </header>
 
   <main>
     <section class="card">
-      <h2>Media Kit</h2>
-      <p class="sub">Opens in Google Drive.</p>
-      <div class="links">
-        <a class="link-btn" id="factSheetLink" href="#" target="_blank" rel="noopener">
-          <div class="icon">📄</div>
-          <div><strong>Fact Sheet</strong><span>Property details, rates &amp; contacts</span></div>
-          <div class="arrow">→</div>
-        </a>
-        <a class="link-btn" id="photosLink" href="#" target="_blank" rel="noopener">
-          <div class="icon">📷</div>
-          <div><strong>Photos</strong><span>High-resolution image gallery</span></div>
-          <div class="arrow">→</div>
-        </a>
-      </div>
+      <h2>Information</h2>
+      <p class="sub">Tap to view online — no download needed.</p>
+      <div class="links" id="links"></div>
     </section>
 
     <section class="card">
@@ -157,8 +147,8 @@
           <input id="email" name="email" type="email" autocomplete="email" required />
         </div>
         <div>
-          <label for="whatsapp">WhatsApp Number <span class="req">*</span></label>
-          <input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" placeholder="+44 7700 900123" required />
+          <label for="whatsapp">WhatsApp Number <span class="opt">(optional)</span></label>
+          <input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" placeholder="+44 7700 900123" />
           <div class="hint">Include country code, e.g. +44, +62.</div>
         </div>
 
@@ -177,8 +167,15 @@
     // ================== EDIT THESE ==================
     const CONFIG = {
       BRAND_NAME:      "Your Company Name",
-      FACT_SHEET_URL:  "https://drive.google.com/your-fact-sheet-link",
-      PHOTOS_URL:      "https://drive.google.com/your-photos-folder-link",
+      // Google Drive links (set sharing to "Anyone with the link – Viewer")
+      LINKS: [
+        { icon: "📄", title: "Fact Sheet",  desc: "Property overview",          url: "https://drive.google.com/your-fact-sheet-link" },
+        { icon: "🎬", title: "Video",       desc: "Watch our property video",   url: "https://drive.google.com/your-video-link" },
+        { icon: "🏨", title: "Facilities",  desc: "Rooms, dining & amenities",  url: "https://drive.google.com/your-facilities-link" },
+        { icon: "🎁", title: "Package",     desc: "Packages & offers",          url: "https://drive.google.com/your-package-link" },
+        { icon: "👤", title: "Yuni – Sales",        desc: "Business card", url: "https://drive.google.com/your-yuni-card-link" },
+        { icon: "👤", title: "Monica – Marketing",  desc: "Business card", url: "https://drive.google.com/your-monica-card-link" }
+      ],
       // Web app URL from Google Apps Script deployment (see README.md)
       SCRIPT_URL:      "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec"
     };
@@ -187,8 +184,19 @@
     document.getElementById("brandName").textContent = CONFIG.BRAND_NAME;
     document.getElementById("footerBrand").textContent = CONFIG.BRAND_NAME;
     document.getElementById("year").textContent = new Date().getFullYear();
-    document.getElementById("factSheetLink").href = CONFIG.FACT_SHEET_URL;
-    document.getElementById("photosLink").href = CONFIG.PHOTOS_URL;
+    const linksEl = document.getElementById("links");
+    for (const l of CONFIG.LINKS) {
+      const a = document.createElement("a");
+      a.className = "link-btn";
+      a.href = l.url;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.innerHTML = '<div class="icon"></div><div><strong></strong><span></span></div><div class="arrow">→</div>';
+      a.querySelector(".icon").textContent = l.icon;
+      a.querySelector("strong").textContent = l.title;
+      a.querySelector("span").textContent = l.desc;
+      linksEl.appendChild(a);
+    }
 
     const form = document.getElementById("agentForm");
     const msg = document.getElementById("formMsg");
@@ -208,13 +216,13 @@
 
       if (data.website) return; // bot
 
-      if (!data.name || !data.position || !data.company || !data.email || !data.whatsapp) {
-        return show("err", "Please fill in all fields.");
+      if (!data.name || !data.position || !data.company || !data.email) {
+        return show("err", "Please fill in all required fields.");
       }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
         return show("err", "Please enter a valid email address.");
       }
-      if (!/^\+?[\d\s\-()]{7,20}$/.test(data.whatsapp)) {
+      if (data.whatsapp && !/^\+?[\d\s\-()]{7,20}$/.test(data.whatsapp)) {
         return show("err", "Please enter a valid WhatsApp number with country code.");
       }
 
