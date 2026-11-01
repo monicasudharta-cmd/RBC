@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WTM London 2026 – Media Kit &amp; Agent Registration</title>
+  <meta name="description" content="Download our fact sheet and photos, and register your details with us at WTM London." />
+  <style>
+    :root {
+      --primary: #0b3d5c;
+      --accent: #c8a45a;
+      --bg: #f5f3ef;
+      --card: #ffffff;
+      --text: #1f2933;
+      --muted: #6b7280;
+      --border: #e5e2dc;
+      --error: #b42318;
+      --success: #067647;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      background: var(--primary);
+      color: #fff;
+      text-align: center;
+      padding: 48px 20px 64px;
+    }
+    header .event {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    header h1 { font-size: 30px; font-weight: 700; margin-bottom: 8px; }
+    header p { opacity: .85; max-width: 520px; margin: 0 auto; }
+    main { max-width: 640px; margin: -36px auto 48px; padding: 0 16px; }
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.06);
+      padding: 28px 24px;
+      margin-bottom: 20px;
+    }
+    .card h2 { font-size: 20px; color: var(--primary); margin-bottom: 4px; }
+    .card .sub { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+    .links { display: grid; gap: 12px; }
+    .link-btn {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color .15s, background .15s;
+    }
+    .link-btn:hover { border-color: var(--accent); background: #fcfaf5; }
+    .link-btn .icon {
+      flex: 0 0 44px; height: 44px;
+      border-radius: 10px;
+      background: var(--primary);
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .link-btn strong { display: block; font-size: 16px; }
+    .link-btn span { font-size: 13px; color: var(--muted); }
+    .link-btn .arrow { margin-left: auto; color: var(--accent); font-size: 20px; }
+    form { display: grid; gap: 16px; }
+    label { font-size: 14px; font-weight: 600; display: block; margin-bottom: 6px; }
+    label .req { color: var(--error); }
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--text);
+    }
+    input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(11,61,92,.12); }
+    .hint { font-size: 12px; color: var(--muted); margin-top: 4px; }
+    button {
+      padding: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      background: var(--primary);
+      color: #fff;
+      cursor: pointer;
+    }
+    button:hover { background: #0d4a70; }
+    button:disabled { opacity: .6; cursor: not-allowed; }
+    .msg { padding: 14px; border-radius: 8px; font-size: 14px; display: none; }
+    .msg.ok { display: block; background: #ecfdf3; color: var(--success); }
+    .msg.err { display: block; background: #fef3f2; color: var(--error); }
+    footer { text-align: center; font-size: 13px; color: var(--muted); padding-bottom: 32px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="event">WTM London 2026</div>
+    <h1 id="brandName">Your Company Name</h1>
+    <p>Thank you for visiting us. Download our fact sheet and photos below, and leave your details so we can stay in touch.</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Media Kit</h2>
+      <p class="sub">Opens in Google Drive.</p>
+      <div class="links">
+        <a class="link-btn" id="factSheetLink" href="#" target="_blank" rel="noopener">
+          <div class="icon">📄</div>
+          <div><strong>Fact Sheet</strong><span>Property details, rates &amp; contacts</span></div>
+          <div class="arrow">→</div>
+        </a>
+        <a class="link-btn" id="photosLink" href="#" target="_blank" rel="noopener">
+          <div class="icon">📷</div>
+          <div><strong>Photos</strong><span>High-resolution image gallery</span></div>
+          <div class="arrow">→</div>
+        </a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Agent Registration</h2>
+      <p class="sub">Leave your details and our team will get in touch.</p>
+
+      <form id="agentForm" novalidate>
+        <div>
+          <label for="name">Name <span class="req">*</span></label>
+          <input id="name" name="name" type="text" autocomplete="name" required />
+        </div>
+        <div>
+          <label for="position">Position <span class="req">*</span></label>
+          <input id="position" name="position" type="text" autocomplete="organization-title" required />
+        </div>
+        <div>
+          <label for="company">Company Name <span class="req">*</span></label>
+          <input id="company" name="company" type="text" autocomplete="organization" required />
+        </div>
+        <div>
+          <label for="email">Email <span class="req">*</span></label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div>
+          <label for="whatsapp">WhatsApp Number <span class="req">*</span></label>
+          <input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" placeholder="+44 7700 900123" required />
+          <div class="hint">Include country code, e.g. +44, +62.</div>
+        </div>
+
+        <!-- Honeypot: hidden from humans, catches simple spam bots -->
+        <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true" />
+
+        <div id="formMsg" class="msg" role="status"></div>
+        <button type="submit" id="submitBtn">Submit</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>&copy; <span id="year"></span> <span id="footerBrand"></span> · WTM London</footer>
+
+  <script>
+    // ================== EDIT THESE ==================
+    const CONFIG = {
+      BRAND_NAME:      "Your Company Name",
+      FACT_SHEET_URL:  "https://drive.google.com/your-fact-sheet-link",
+      PHOTOS_URL:      "https://drive.google.com/your-photos-folder-link",
+      // Web app URL from Google Apps Script deployment (see README.md)
+      SCRIPT_URL:      "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec"
+    };
+    // ================================================
+
+    document.getElementById("brandName").textContent = CONFIG.BRAND_NAME;
+    document.getElementById("footerBrand").textContent = CONFIG.BRAND_NAME;
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("factSheetLink").href = CONFIG.FACT_SHEET_URL;
+    document.getElementById("photosLink").href = CONFIG.PHOTOS_URL;
+
+    const form = document.getElementById("agentForm");
+    const msg = document.getElementById("formMsg");
+    const btn = document.getElementById("submitBtn");
+
+    function show(type, text) {
+      msg.className = "msg " + type;
+      msg.textContent = text;
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      msg.className = "msg";
+
+      const data = Object.fromEntries(new FormData(form).entries());
+      for (const k in data) data[k] = data[k].trim();
+
+      if (data.website) return; // bot
+
+      if (!data.name || !data.position || !data.company || !data.email || !data.whatsapp) {
+        return show("err", "Please fill in all fields.");
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+        return show("err", "Please enter a valid email address.");
+      }
+      if (!/^\+?[\d\s\-()]{7,20}$/.test(data.whatsapp)) {
+        return show("err", "Please enter a valid WhatsApp number with country code.");
+      }
+
+      btn.disabled = true;
+      btn.textContent = "Submitting…";
+
+      try {
+        // no-cors: Apps Script doesn't return CORS headers; the request still lands.
+        await fetch(CONFIG.SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          body: new URLSearchParams(data)
+        });
+        form.reset();
+        show("ok", "Thank you! Your details have been received. We'll be in touch soon.");
+      } catch (err) {
+        show("err", "Something went wrong. Please check your connection and try again.");
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Submit";
+      }
+    });
+  </script>
+</body>
+</html>
