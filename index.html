@@ -202,42 +202,43 @@
     // ================== EDIT THESE ==================
     // Google Drive links: set sharing to "Anyone with the link – Viewer".
     // An item has either `url` (whole row is a link) or `links` (row with buttons).
+    // Leave a url as "" to hide that button until the link is ready.
     const SECTIONS = [
       {
         title: "About the Resort",
         items: [
           { icon: "🌐", title: "Resort's Website", desc: "www.ramabeachhotel.com", url: "https://www.ramabeachhotel.com" },
-          { icon: "📄", title: "Fact Sheet", desc: "Resort overview", url: "https://drive.google.com/your-fact-sheet-link" }
+          { icon: "📄", title: "Fact Sheet", desc: "Resort overview", url: "https://drive.google.com/file/d/1UX3pMggYdjrSZwq8f7Mxym6KviA768UH/view" }
         ]
       },
       {
         title: "Video",
         items: [
-          { icon: "▶️", title: "30 Seconds", desc: "Short highlight", url: "https://drive.google.com/your-30s-video-link" },
-          { icon: "▶️", title: "2 Minutes",  desc: "Full resort video", url: "https://drive.google.com/your-2min-video-link" }
+          { icon: "▶️", title: "30 Seconds", desc: "Short highlight", url: "https://drive.google.com/file/d/1qQ9brHTseXqcGefyQ2FruMKJgQ2ct0aV/view" },
+          { icon: "▶️", title: "2 Minutes",  desc: "Full resort video", url: "" }
         ]
       },
       {
         title: "Facilities",
         items: [
           { icon: "🍽️", title: "Dewi Shinta Restaurant", links: [
-              { label: "Photos", url: "https://drive.google.com/your-restaurant-photos-link" },
-              { label: "Menu",   url: "https://drive.google.com/your-restaurant-menu-link" }
+              { label: "Photos", url: "" },
+              { label: "Menu",   url: "https://drive.google.com/file/d/1i0lSYF2n9cgfiWhr6vT7esCdqaahlzkA/view" }
           ]},
           { icon: "🌿", title: "Spa", links: [
-              { label: "Photos",          url: "https://drive.google.com/your-spa-photos-link" },
-              { label: "Menu",            url: "https://drive.google.com/your-spa-menu-link" },
-              { label: "Promotion Flyer", url: "https://drive.google.com/your-spa-flyer-link" }
+              { label: "Photos",          url: "" },
+              { label: "Menu",            url: "https://drive.google.com/file/d/1q0rR0PPYxn9U0lsgAF_DOH46DAErE_el/view" },
+              { label: "Promotion Flyer", url: "https://drive.google.com/file/d/1q0rR0PPYxn9U0lsgAF_DOH46DAErE_el/view" }
           ]},
-          { icon: "🎾", title: "Tennis Court", desc: "Photos", url: "https://drive.google.com/your-tennis-court-link" },
-          { icon: "🏛️", title: "Meeting Room", desc: "Photos", url: "https://drive.google.com/your-meeting-room-link" }
+          { icon: "🎾", title: "Tennis Court", desc: "Photos", url: "" },
+          { icon: "🏛️", title: "Meeting Room", desc: "Photos", url: "" }
         ]
       },
       {
         title: "Our Team",
         items: [
-          { icon: "👤", title: "Yuni",   desc: "Sales · Business card",     url: "https://drive.google.com/your-yuni-card-link" },
-          { icon: "👤", title: "Monica", desc: "Marketing · Business card", url: "https://drive.google.com/your-monica-card-link" }
+          { icon: "👤", title: "Yuni",   desc: "Sales · Business card",     url: "https://drive.google.com/file/d/1U7ToA-mbSqOpRmxRma4vg1PqRxnM6Q5w/view" },
+          { icon: "👤", title: "Monica", desc: "Marketing · Business card", url: "https://drive.google.com/file/d/1VGUU9sSzygD80vsgDoI8k14W2eEkvEtM/view" }
         ]
       }
     ];
@@ -257,7 +258,13 @@
     function ext(a, url) { a.href = url; a.target = "_blank"; a.rel = "noopener"; return a; }
 
     const root = document.getElementById("sections");
-    for (const s of SECTIONS) {
+    for (const sec of SECTIONS) {
+      // hide anything without a link yet
+      const items = sec.items
+        .map(it => it.links ? { ...it, links: it.links.filter(l => l.url) } : it)
+        .filter(it => it.links ? it.links.length : it.url);
+      if (!items.length) continue;
+      const s = { ...sec, items };
       const card = el("section", "card");
       card.appendChild(el("h2", null, s.title));
       card.appendChild(el("p", "sub", "Tap to view online."));
