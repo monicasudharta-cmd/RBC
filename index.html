@@ -186,8 +186,8 @@
           <input id="name" name="name" type="text" autocomplete="name" required />
         </div>
         <div>
-          <label for="position">Position <span class="req">*</span></label>
-          <input id="position" name="position" type="text" autocomplete="organization-title" required />
+          <label for="position">Position <span class="opt">(optional)</span></label>
+          <input id="position" name="position" type="text" autocomplete="organization-title" />
         </div>
         <div>
           <label for="company">Company Name <span class="req">*</span></label>
@@ -352,7 +352,7 @@
       }
       delete data.industryOther;
 
-      if (!data.name || !data.position || !data.company || !data.industry || !data.country || !data.email) {
+      if (!data.name || !data.company || !data.industry || !data.country || !data.email) {
         return show("err", "Please fill in all required fields.");
       }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
