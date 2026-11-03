@@ -125,7 +125,7 @@
     label { font-size: 14px; font-weight: 600; display: block; margin-bottom: 6px; color: var(--teal); }
     label .req { color: var(--sun); }
     label .opt { color: var(--muted); font-weight: 400; }
-    input {
+    input, select {
       width: 100%;
       padding: 12px 14px;
       font-size: 16px;
@@ -135,7 +135,14 @@
       background: #fff;
       color: var(--text);
     }
-    input:focus { outline: none; border-color: var(--sea); box-shadow: 0 0 0 3px rgba(123, 189, 175, .3); }
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23004d5d' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 14px center;
+      padding-right: 36px;
+    }
+    select:invalid { color: var(--muted); }
+    input:focus, select:focus { outline: none; border-color: var(--sea); box-shadow: 0 0 0 3px rgba(123, 189, 175, .3); }
     .hint { font-size: 12px; color: var(--muted); margin-top: 4px; }
     button {
       padding: 14px;
@@ -185,6 +192,24 @@
         <div>
           <label for="company">Company Name <span class="req">*</span></label>
           <input id="company" name="company" type="text" autocomplete="organization" required />
+        </div>
+        <div>
+          <label for="industry">Industry <span class="req">*</span></label>
+          <select id="industry" name="industry" required>
+            <option value="" disabled selected>Select your industry</option>
+            <option>Travel Agent</option>
+            <option>Online B2B</option>
+            <option>DMC</option>
+            <option>Airlines &amp; Transport</option>
+            <option>Media &amp; Press</option>
+            <option>Travel Technology</option>
+            <option>Others</option>
+          </select>
+          <input id="industryOther" name="industryOther" type="text" placeholder="Please specify" style="display:none; margin-top:8px" />
+        </div>
+        <div>
+          <label for="country">Country / Market <span class="req">*</span></label>
+          <input id="country" name="country" type="text" autocomplete="country-name" placeholder="e.g. United Kingdom" required />
         </div>
         <div>
           <label for="email">Email <span class="req">*</span></label>
@@ -298,6 +323,13 @@
     }
 
     const form = document.getElementById("agentForm");
+    const industrySel = document.getElementById("industry");
+    const industryOther = document.getElementById("industryOther");
+    industrySel.addEventListener("change", () => {
+      const other = industrySel.value === "Others";
+      industryOther.style.display = other ? "block" : "none";
+      if (other) industryOther.focus(); else industryOther.value = "";
+    });
     const msg = document.getElementById("formMsg");
     const btn = document.getElementById("submitBtn");
 
@@ -315,7 +347,12 @@
 
       if (data.website) return; // bot
 
-      if (!data.name || !data.position || !data.company || !data.email) {
+      if (data.industry === "Others") {
+        data.industry = data.industryOther ? "Others: " + data.industryOther : "Others";
+      }
+      delete data.industryOther;
+
+      if (!data.name || !data.position || !data.company || !data.industry || !data.country || !data.email) {
         return show("err", "Please fill in all required fields.");
       }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
@@ -336,6 +373,7 @@
           body: new URLSearchParams(data)
         });
         form.reset();
+        industryOther.style.display = "none";
         show("ok", "Thank you! Your details have been received. We'll be in touch soon.");
       } catch (err) {
         show("err", "Something went wrong. Please check your connection and try again.");

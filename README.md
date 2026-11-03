@@ -7,7 +7,7 @@ Website satu halaman:
   - **Video**: 30 Seconds, 2 Minutes
   - **Facilities**: Dewi Shinta Restaurant (Photos, Menu), Spa (Photos, Menu, Promotion Flyer), Meeting Room, Gym & Tennis Court
   - **Our Team**: kartu nama Yuni – Sales, Monica – Marketing
-- Form registrasi agent: Name, Position, Company Name, Email (wajib), WhatsApp Number (opsional) → otomatis masuk ke **Google Sheet**
+- Form registrasi agent: Name, Position, Company Name, Industry, Country / Market, Email (wajib), WhatsApp Number (opsional) → otomatis masuk ke **Google Sheet**
 
 ## File
 | File | Fungsi |
